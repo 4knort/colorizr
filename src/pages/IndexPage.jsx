@@ -1,10 +1,9 @@
 import React from 'react';
-import { Title, ReactLogo } from 'components';
+import { ColorPicker } from 'components';
 
 const IndexPage = () => (
   <div className="index-page">
-    <ReactLogo />
-    <Title>React Pages Boilerplate</Title>
+    <ColorPicker />
   </div>
 );
 
