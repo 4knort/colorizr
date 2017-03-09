@@ -1,5 +1,6 @@
 import React from 'react';
 import { ColorPicker, Panel, ColorItem } from 'components';
+import { LuminosityGroup } from 'containers';
 import { connect } from 'react-redux';
 
 const IndexPage = ( { luminosityGroup } ) => {
@@ -9,7 +10,7 @@ const IndexPage = ( { luminosityGroup } ) => {
 
   return (
     <div className="index-page">
-      <ColorPicker />
+      <LuminosityGroup />
       <Panel title={'hello'}>
         {luminosityColors}
       </Panel>

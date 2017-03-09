@@ -1,0 +1,1 @@
+export LuminosityGroup from './LuminosityGroup';
