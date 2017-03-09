@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
-export default combineReducers({ routing });
+import colorReducer from '../reducers/colorReducer.js';
+
+export default combineReducers({ routing, colorReducer });

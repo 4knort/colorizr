@@ -1,0 +1,9 @@
+.panel {
+  padding: 30px;
+  min-height: 200px;
+  background-color: grey;
+  &__colors {
+    background-color: green;
+    min-height: 50px;
+  }
+}
