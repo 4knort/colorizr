@@ -35,7 +35,7 @@ function saveState(state) {
   }
 }
 
-const configureStore = (initialState = loadState()) => {
+const configureStore = (initialState) => {
   // Prevent redux devTools initialization in production
   const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(...middlewares),

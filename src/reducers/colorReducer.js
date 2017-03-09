@@ -1,8 +1,10 @@
 import * as types from 'constants/actionTypes';
+import { getGradient } from '../helpers/functions';
 
 const initialState = {
-  chosenColor: {},
-  colors: [],
+  chosenColor: null,
+  luminosityGroup: ['#ff1111', '#000000', '#aa3333'],
+  mixedGroup: [],
 };
 
 export default function colorReducer(state = initialState, action) {
@@ -11,6 +13,7 @@ export default function colorReducer(state = initialState, action) {
       return {
         ...initialState,
         chosenColor: action.payload,
+        luminosityGroup: getGradient(action.payload.hex),
       };
     }
     default: {

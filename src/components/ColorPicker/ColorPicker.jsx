@@ -16,6 +16,6 @@ export default class ColorPicker extends Component {
       <h1 className="color-picker-container__title">Choose the color</h1>
       <SketchPicker onChange={this.handleChange} />
     </div>
-    )
+    );
   }
 }
