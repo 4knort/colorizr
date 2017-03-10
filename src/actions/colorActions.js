@@ -6,3 +6,10 @@ export function chooseColor(color) {
     payload: color,
   };
 }
+
+export function chooseMixedColor(color) {
+  return {
+    type: types.CHOOSE_MIXED_COLOR,
+    payload: color,
+  }
+}

@@ -8,3 +8,10 @@ export const getGradient = (color) => {
   return colors;
 };
 
+export const getMixedGradient = (color1, color2) => {
+  const gradient = new warna.Gradient(color1, color2);
+  const colors = gradient.getSlices(10, 'hex');
+
+  return colors;
+}
+

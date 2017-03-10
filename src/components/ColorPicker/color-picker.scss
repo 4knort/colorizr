@@ -5,4 +5,8 @@
 }
 .sketch-picker {
   margin: 0 auto; 
+  cursor: pointer;
+}
+.flexbox-fix:nth-child(3) {
+  display: none !important;
 }

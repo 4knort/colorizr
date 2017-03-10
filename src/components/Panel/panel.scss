@@ -6,4 +6,11 @@
     background-color: green;
     min-height: 50px;
   }
+  &__color-block {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    display: inline-block;
+    cursor: pointer;
+  }
 }

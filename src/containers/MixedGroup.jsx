@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { ColorPicker } from 'components';
 import * as colorActions from '../actions/colorActions';
 
-const LuminosityGroup = ({ chooseColor }) => {
+const MixedGroup = ({ chooseMixedColor }) => {
   const handleChangeColor = (color) => {
-    chooseColor(color);
+    chooseMixedColor(color);
   };
 
-  return <ColorPicker defaultColor={'#000000'} handleChange={handleChangeColor} />;
+  return <ColorPicker defaultColor={'#ff0000'} handleChange={handleChangeColor} />;
 };
 
-export default connect(null, colorActions)(LuminosityGroup);
+export default connect(null, colorActions)(MixedGroup);
