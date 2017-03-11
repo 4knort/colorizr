@@ -5,15 +5,15 @@ import * as colorActions from '../../actions/colorActions';
 
 import './color-picker.scss';
 
-const ColorPicker = ({ handleChange, defaultColor }) => {
-  console.log(defaultColor)
+const ColorPicker = ({ title, handleChange, defaultColor }) => {
+  const pickerTitle = title ? <h1 className="color-picker-container__title">{title}</h1> : ''
   const onChange = (color) => {
     handleChange(color);
   };
 
   return (
     <div className="color-picker-container">
-      <h1 className="color-picker-container__title">Choose the color</h1>
+      {pickerTitle}
       <SketchPicker color={defaultColor} onChange={onChange} disableAlpha={true} presetColors={[]} width={350} />
     </div>
   );

@@ -1,9 +1,10 @@
 import * as types from 'constants/actionTypes';
-import { getGradient, getMixedGradient } from '../helpers/functions';
+import { getGradient, getMixedGradient, getArrayEmptyColors } from '../helpers/functions';
 
 const initialState = {
   chosenColor: '#000000',
   mixedColor: '#ff0000',
+  chosenColorsGroup: getArrayEmptyColors(),
   luminosityGroup: getGradient('#000000'),
   mixedGroup: getMixedGradient('#ff0000', '#000000'),
 };

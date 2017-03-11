@@ -8,7 +8,7 @@ const LuminosityGroup = ({ chooseColor }) => {
     chooseColor(color);
   };
 
-  return <ColorPicker defaultColor={'#000000'} handleChange={handleChangeColor} />;
+  return <ColorPicker title={'Choose the color'} defaultColor={'#000000'} handleChange={handleChangeColor} />;
 };
 
 export default connect(null, colorActions)(LuminosityGroup);
