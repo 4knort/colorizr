@@ -21,6 +21,37 @@ export const getArrayEmptyColors = () => {
   for (let i = 0; i < 10; i++) {
     arr.push('#f5f5f5');
   }
-  
+
+  return arr;
+};
+
+export const deleteColor = (array, color) => {
+  const arr = array.filter(item => {
+    return item !== color;
+  });
+
+  arr.push('#f5f5f5');
+
+  return arr;
+};
+
+export const addColor = (array, color) => {
+  const emptyColor = '#f5f5f5';
+
+  let arr = array.filter(item => {
+    return item !== emptyColor;
+  });
+
+  if ( arr.length >= 10) {
+    arr = arr.slice(1);
+    arr.push(color);
+  } else {
+    arr.push(color);
+  }
+
+  for (let i = arr.length; i < 10; i++) {
+    arr.push(emptyColor);
+  }
+
   return arr;
 };

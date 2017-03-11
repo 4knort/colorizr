@@ -1,3 +1,4 @@
 export const CHOOSE_COLOR = 'CHOOSE_COLOR';
 export const CHOOSE_MIXED_COLOR = 'CHOOSE_MIXED_COLOR';
+export const ADD_COLOR = 'ADD_COLOR';
 

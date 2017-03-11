@@ -13,3 +13,9 @@ export function chooseMixedColor(color) {
     payload: color,
   }
 }
+export function addColor(color) {
+  return {
+    type: types.ADD_COLOR,
+    payload: color,
+  }
+}
