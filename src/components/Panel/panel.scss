@@ -14,4 +14,38 @@
     display: inline-block;
     cursor: pointer;
   }
+  &__color-item {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+    position: relative;
+    &:hover {
+      .panel__color-icon--hover {
+        display: block;
+        transform: rotate(45deg);
+      }
+    }
+    &--choose {
+      .panel__color-icon--active {
+        display: none;
+      }
+    }
+  }
+  &__color-icon {
+    display: none;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &--active {
+      display: block;
+    }
+  }
 }
+
+

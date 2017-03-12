@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
-import { Header, Container } from 'components';
+import { Header, Container, Content } from 'components';
 
 const App = ({ children }) => (
   <div className="app">
     <Header />
-    <Container>
-      {children}
-    </Container>
+    <Content>
+      <Container>
+        {children}
+      </Container>
+    </Content>
   </div>
 );
 
