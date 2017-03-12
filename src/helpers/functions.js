@@ -42,7 +42,7 @@ export const addColor = (array, color) => {
     return item !== emptyColor;
   });
 
-  if ( arr.length >= 10) {
+  if (arr.length >= 10) {
     arr = arr.slice(1);
     arr.push(color);
   } else {

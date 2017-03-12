@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as colorActions from '../../actions/colorActions';
 
 import './panel.scss';
 
-const Panel = ({ children, title, isColorPicker }) => {
+const Panel = (props) => {
+  const handleClick = () => {
+    props.toggleColorPicker();
+  };
+
   const colorPanel = 
-  isColorPicker ? 
-  <span className="panel__color-block"></span> 
-  : 
-  '';
+    props.isColorPicker ? 
+    <span className="panel__color-block" style={{ backgroundColor: props.mixedColor }} onClick={handleClick}></span> 
+    : 
+    '';
 
   return (
     <div className="panel">
-      <h2 className="panel__title">{title} {colorPanel}</h2>
+      <h2 className="panel__title">{props.title} {colorPanel}</h2>
       <div className="panel__colors">
-        {children}
+        {props.children}
       </div>
       <div className="panel__btns">
         <button>btn</button>
@@ -23,4 +29,6 @@ const Panel = ({ children, title, isColorPicker }) => {
   );
 };
 
-export default Panel;
+export default connect(state => ({
+  mixedColor: state.colorReducer.mixedColor,
+}), colorActions)(Panel);

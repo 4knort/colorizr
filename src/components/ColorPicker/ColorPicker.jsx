@@ -5,16 +5,20 @@ import * as colorActions from '../../actions/colorActions';
 
 import './color-picker.scss';
 
-const ColorPicker = ({ title, handleChange, defaultColor }) => {
-  const pickerTitle = title ? <h1 className="color-picker-container__title">{title}</h1> : ''
+const ColorPicker = ({ title, handleChange, defaultColor, isColorPickerOpened, width }) => {
+  const pickerTitle = title ? <h1 className="color-picker-container__title">{title}</h1> : '';
+  const pickerOpened = isColorPickerOpened ? 
+    'color-picker-container color-picker-container--active' 
+    : 
+    'color-picker-container;';
   const onChange = (color) => {
     handleChange(color);
   };
-
+  const pickerWidth = width ? width : '350';
   return (
-    <div className="color-picker-container">
+    <div className={pickerOpened}>
       {pickerTitle}
-      <SketchPicker color={defaultColor} onChange={onChange} disableAlpha={true} presetColors={[]} width={350} />
+      <SketchPicker color={defaultColor} className="asdf" onChange={onChange} disableAlpha={true} presetColors={[]} width={pickerWidth} />
     </div>
   );
 };

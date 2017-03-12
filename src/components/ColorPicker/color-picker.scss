@@ -1,7 +1,19 @@
+.panel__colors {
+  .sketch-picker {
+    display: none !important;
+  }
+}
 .color-picker-container {
   &__title {
     text-align: center;
   }
+  &--active .sketch-picker {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 180px;
+  }
+
 }
 .sketch-picker {
   margin: 0 auto; 
@@ -10,3 +22,4 @@
 .flexbox-fix:nth-child(3) {
   display: none !important;
 }
+

@@ -2,6 +2,7 @@ import * as types from 'constants/actionTypes';
 import * as helpers from '../helpers/functions';
 
 const initialState = {
+  isColorPickerOpened: false,
   chosenColor: '#000000',
   mixedColor: '#ff0000',
   chosenColorsGroup: helpers.getArrayEmptyColors(),
@@ -11,6 +12,12 @@ const initialState = {
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.TOGGLE_PICKER: {
+      return {
+        ...state,
+        isColorPickerOpened: !state.isColorPickerOpened,
+      };
+    }
     case types.ADD_COLOR: {
       return {
         ...state,
