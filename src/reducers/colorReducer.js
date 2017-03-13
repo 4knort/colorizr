@@ -1,5 +1,6 @@
 import * as types from 'constants/actionTypes';
 import * as helpers from '../helpers/functions';
+import exploreColors from '../helpers/exploreColors';
 
 const initialState = {
   isColorPickerOpened: false,
@@ -8,6 +9,7 @@ const initialState = {
   chosenColorsGroup: helpers.getArrayEmptyColors(),
   luminosityGroup: helpers.getGradient('#000000'),
   mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
+  exploringColors: exploreColors,
 };
 
 export default function colorReducer(state = initialState, action) {

@@ -20,9 +20,11 @@ const ExplorePage = (props) => {
 
   return (
     <div className="explore-page">
-      <Panel choose title={'Select up to 10 colors'}>
-        {chosenColors}
-      </Panel>
+      <div className="container">
+        <Panel isChosenPanel title={'Select up to 10 colors'}>
+          {chosenColors}
+        </Panel>
+      </div>
     </div>
   );
 };

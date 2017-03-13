@@ -48,18 +48,20 @@ const IndexPage = ( props ) => {
   ));
 
   return (
-    <div className="index-page">
-      <LuminosityGroup />
-      <Panel choose title={'Select up to 10 colors'}>
-        {chosenColors}
-      </Panel>
-      <Panel onClick={selectAllColors} colors={props.luminosityGroup} title={'Darker and Lighter'}>
-        {luminosityColors}
-      </Panel>
-      <Panel onClick={selectAllColors} colors={props.mixedGroup} title={'Mixed with'} isColorPicker>
-        <MixedGroup />
-        {mixedColors}
-      </Panel>
+    <div className="index-page" style={{ backgroundColor: props.chosenColor }}>
+      <div className="container">
+        <LuminosityGroup />
+        <Panel isChosenPanel title={'Select up to 10 colors'}>
+          {chosenColors}
+        </Panel>
+        <Panel onClick={selectAllColors} colors={props.luminosityGroup} title={'Darker and Lighter'}>
+          {luminosityColors}
+        </Panel>
+        <Panel onClick={selectAllColors} colors={props.mixedGroup} title={'Mixed with'} isColorPicker>
+          <MixedGroup />
+          {mixedColors}
+        </Panel>
+      </div>
     </div>
   );
 };
@@ -68,4 +70,5 @@ export default connect(state => ({
   luminosityGroup: state.colorReducer.luminosityGroup,
   mixedGroup: state.colorReducer.mixedGroup,
   chosenColorsGroup: state.colorReducer.chosenColorsGroup,
+  chosenColor: state.colorReducer.chosenColor,
 }), colorActions)(IndexPage);
