@@ -15,7 +15,9 @@ export default function colorReducer(state = initialState, action) {
     case types.DELETE_COLOR: {
       return {
         ...state,
-        chosenColorsGroup: helpers.deleteColor(state.chosenColorsGroup.slice(0), action.payload),  
+        chosenColorsGroup: helpers.deleteColor(state.chosenColorsGroup.slice(0), action.payload),
+        luminosityGroup: helpers.deleteGroupColor(state.luminosityGroup.slice(0), action.payload),
+        mixedGroup: helpers.deleteGroupColor(state.mixedGroup.slice(0), action.payload),
       };
     }
     case types.TOGGLE_PICKER: {
@@ -28,6 +30,8 @@ export default function colorReducer(state = initialState, action) {
       return {
         ...state,
         chosenColorsGroup: helpers.addColor(state.chosenColorsGroup.slice(0), action.payload),
+        luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),
+        mixedGroup: helpers.clickColorItem(state.mixedGroup.slice(0), action.payload),
       };
     }
     case types.CHOOSE_COLOR: {

@@ -29,7 +29,7 @@ export const getMixedGradient = (color1, color2) => {
       isClicked: false,
     });
   }
-  
+
   return arr;
 };
 
@@ -49,6 +49,32 @@ export const deleteColor = (array, color) => {
   });
 
   arr.push('#f5f5f5');
+
+  return arr;
+};
+
+export const clickColorItem = (array, color) => {
+  const arr = array.map(item => {
+    if (item.color === color) {
+      item.isClicked = true;
+
+      return item;
+    }
+    return item;
+  });
+
+  return arr;
+};
+
+export const deleteGroupColor = (array, color) => {
+  const arr = array.map(item => {
+    if (item.color === color) {
+      item.isClicked = false;
+
+      return item;
+    }
+    return item;
+  });
 
   return arr;
 };

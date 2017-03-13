@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
+
 export default class ColorItem extends Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.color !== this.props.color) {
-    this.setState({isClicked: false})
-    }
+    this.setState({isClicked: nextProps.isClicked});
   }
 
   state = {
