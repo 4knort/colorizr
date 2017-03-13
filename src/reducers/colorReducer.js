@@ -20,7 +20,24 @@ export default function colorReducer(state = initialState, action) {
           state.luminosityGroup.slice(0),
           state.mixedGroup.slice(0), 
           state.chosenColorsGroup.slice(0), 
-        )
+        ),
+        luminosityGroup: action.payload.map((item, index) => {
+          if (item.color === state.luminosityGroup[index].color) {
+            item.isClicked = true;
+            
+            return item;
+          }
+          return state.luminosityGroup[index];
+        }),
+        mixedGroup: action.payload.map((item, index) => {
+          if (item.color === state.mixedGroup[index].color) {
+            item.isClicked = true;
+
+            return item;
+          }
+
+          return state.mixedGroup[index];
+        }),
       };
     }
     case types.DELETE_COLOR: {

@@ -10,7 +10,6 @@ const IndexPage = ( props ) => {
       props.addColor(color);
     } else {
       props.deleteColor(color);
-      console.log('delete');
     }
   };
 
