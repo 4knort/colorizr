@@ -9,6 +9,7 @@ const IndexPage = ( props ) => {
     if (!isAdded) {
       props.addColor(color);
     } else {
+      props.deleteColor(color);
       console.log('delete');
     }
   };
@@ -18,14 +19,28 @@ const IndexPage = ( props ) => {
     }
   }
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
-    <ColorItem key={`chosen-${index}`} choose color={color} onClickAddColor={() => { onClickDeleteColor(color) }} />)
-  );
+    <ColorItem 
+      key={`chosen-${index}`} 
+      choose color={color} 
+      onClickAddColor={() => { onClickDeleteColor(color) }} 
+    />
+  ));
   const luminosityColors = props.luminosityGroup.map((item, index) => (
-    <ColorItem key={`luminosity-${index}`} isClicked={item.isClicked} color={item.color} onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} />)
-  );
+    <ColorItem 
+      key={`luminosity-${index}`}
+      isClicked={item.isClicked}
+      color={item.color}
+      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} 
+    />
+  ));
   const mixedColors = props.mixedGroup.map((item, index) => (
-    <ColorItem key={`mixed-${index}`} isClicked={item.isClicked} color={item.color} onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} />)
-  );
+    <ColorItem 
+      key={`mixed-${index}`}
+      isClicked={item.isClicked}
+      color={item.color}
+      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} 
+    />
+  ));
 
   return (
     <div className="index-page">

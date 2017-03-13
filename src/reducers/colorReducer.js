@@ -29,7 +29,12 @@ export default function colorReducer(state = initialState, action) {
     case types.ADD_COLOR: {
       return {
         ...state,
-        chosenColorsGroup: helpers.addColor(state.chosenColorsGroup.slice(0), action.payload),
+        chosenColorsGroup: helpers.addColor(
+          state.chosenColorsGroup.slice(0), 
+          state.luminosityGroup.slice(0),
+          state.mixedGroup.slice(0), 
+          action.payload
+        ),
         luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),
         mixedGroup: helpers.clickColorItem(state.mixedGroup.slice(0), action.payload),
       };

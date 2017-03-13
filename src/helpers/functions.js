@@ -18,7 +18,8 @@ export const getGradient = (color) => {
 };
 
 export const getMixedGradient = (color1, color2) => {
-  const gradient = new warna.Gradient(color1, color2);
+  const lighterColor = warna.lighten(color2, 0.011).hex;
+  const gradient = new warna.Gradient(color1, lighterColor);
   const colors = gradient.getSlices(10, 'hex');
 
   const arr = [];
@@ -67,6 +68,7 @@ export const clickColorItem = (array, color) => {
 };
 
 export const deleteGroupColor = (array, color) => {
+  console.log(array, color)
   const arr = array.map(item => {
     if (item.color === color) {
       item.isClicked = false;
@@ -79,7 +81,7 @@ export const deleteGroupColor = (array, color) => {
   return arr;
 };
 
-export const addColor = (array, color) => {
+export const addColor = (array, luminosity, mixed, color) => {
   const emptyColor = '#f5f5f5';
 
   let arr = array.filter(item => {
@@ -87,6 +89,8 @@ export const addColor = (array, color) => {
   });
 
   if (arr.length >= 10) {
+    deleteGroupColor(luminosity, arr[0]);
+    deleteGroupColor(mixed, arr[0]);
     arr = arr.slice(1);
     arr.push(color);
   } else {
