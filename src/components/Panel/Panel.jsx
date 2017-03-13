@@ -9,10 +9,14 @@ const Panel = (props) => {
     props.toggleColorPicker();
   };
 
+  const selectAllColors = (colors) => {
+    props.onClick(colors);
+  };
+
   const buttons = props.choose ? ''
     :
     (<div className="panel__btns">
-      <button>Select All</button>
+      <button onClick={() => {selectAllColors(props.colors)}}>Select All</button>
       <button>Remove All</button>
     </div>);
 

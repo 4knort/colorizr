@@ -12,6 +12,17 @@ const initialState = {
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SELECT_ALL: {
+      return {
+        ...state,
+        chosenColorsGroup: helpers.selectAll(
+          action.payload, 
+          state.luminosityGroup.slice(0),
+          state.mixedGroup.slice(0), 
+          state.chosenColorsGroup.slice(0), 
+        )
+      };
+    }
     case types.DELETE_COLOR: {
       return {
         ...state,

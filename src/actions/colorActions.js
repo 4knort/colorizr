@@ -33,3 +33,10 @@ export function deleteColor(color) {
     payload: color,
   };
 }
+
+export function selectAll(colors) {
+  return {
+    type: types.SELECT_ALL,
+    payload: colors,
+  };
+}

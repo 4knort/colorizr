@@ -68,7 +68,6 @@ export const clickColorItem = (array, color) => {
 };
 
 export const deleteGroupColor = (array, color) => {
-  console.log(array, color)
   const arr = array.map(item => {
     if (item.color === color) {
       item.isClicked = false;
@@ -103,3 +102,14 @@ export const addColor = (array, luminosity, mixed, color) => {
 
   return arr;
 };
+
+export const selectAll = (array, luminosity, mixed, chosenGroup) => {
+  const arr = array.map( (item, index) => {
+    deleteGroupColor(luminosity, chosenGroup[index]);
+    deleteGroupColor(mixed, chosenGroup[index]);
+
+    return item.color;
+  });
+
+  return arr;
+}

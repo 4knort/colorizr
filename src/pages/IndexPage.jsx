@@ -13,11 +13,17 @@ const IndexPage = ( props ) => {
       console.log('delete');
     }
   };
+
   const onClickDeleteColor = (color) => {
     if(color !== '#f5f5f5') {
       props.deleteColor(color);
     }
-  }
+  };
+
+  const selectAllColors = (colors) => {
+    props.selectAll(colors);
+  };
+
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
     <ColorItem 
       key={`chosen-${index}`} 
@@ -48,10 +54,10 @@ const IndexPage = ( props ) => {
       <Panel choose title={'Select up to 10 colors'}>
         {chosenColors}
       </Panel>
-      <Panel title={'Darker and Lighter'}>
+      <Panel onClick={selectAllColors} colors={props.luminosityGroup} title={'Darker and Lighter'}>
         {luminosityColors}
       </Panel>
-      <Panel title={'Mixed with'} isColorPicker>
+      <Panel onClick={selectAllColors} colors={props.mixedGroup} title={'Mixed with'} isColorPicker>
         <MixedGroup />
         {mixedColors}
       </Panel>
