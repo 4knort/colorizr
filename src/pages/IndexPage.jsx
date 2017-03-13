@@ -17,14 +17,14 @@ const IndexPage = ( props ) => {
       console.log('delete');
     }
   }
+  const chosenColors = props.chosenColorsGroup.map((color, index) => (
+    <ColorItem key={`chosen-${index}`} choose color={color} onClickAddColor={() => { onClickDeleteColor(color) }} />)
+  );
   const luminosityColors = props.luminosityGroup.map((color, index) => (
     <ColorItem key={`luminosity-${index}`} color={color} onClickAddColor={(isAdded) => { onClickAddColor(isAdded, color) }} />)
   );
   const mixedColors = props.mixedGroup.map((color, index) => (
-    <ColorItem key={`luminosity-${index}`} color={color} onClickAddColor={(isAdded) => { onClickAddColor(isAdded, color) }} />)
-  );
-  const chosenColors = props.chosenColorsGroup.map((color, index) => (
-    <ColorItem key={`luminosity-${index}`} choose color={color} onClickAddColor={() => { onClickDeleteColor(color) }} />)
+    <ColorItem key={`mixed-${index}`} color={color} onClickAddColor={(isAdded) => { onClickAddColor(isAdded, color) }} />)
   );
 
   return (
