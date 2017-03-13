@@ -14,7 +14,7 @@ const IndexPage = ( props ) => {
   };
 
   const onClickDeleteColor = (color) => {
-    if(color !== '#f5f5f5') {
+    if (color !== '#f5f5f5') {
       props.deleteColor(color);
     }
   };

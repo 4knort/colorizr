@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, IndexLink  } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 import './header.scss';
- 
+
 const Header = () => (
   <header className="header clearfix">
     <a href="" className="logo">
@@ -11,6 +11,9 @@ const Header = () => (
     <nav className="header__nav">
       <li className="header__nav-item">
         <IndexLink to={'/'} activeClassName="header__nav-link--active" className="header__nav-link">Create</IndexLink>
+      </li>
+      <li className="header__nav-item">
+        <Link to={'/explore'} activeClassName="header__nav-link--active" className="header__nav-link">Explore</Link>
       </li>
     </nav>
   </header>

@@ -17,7 +17,6 @@ const Panel = (props) => {
     :
     (<div className="panel__btns">
       <button onClick={() => {selectAllColors(props.colors)}}>Select All</button>
-      <button>Remove All</button>
     </div>);
 
   const colorPanel = 

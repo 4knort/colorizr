@@ -18,7 +18,7 @@ export const getGradient = (color) => {
 };
 
 export const getMixedGradient = (color1, color2) => {
-  const lighterColor = warna.lighten(color2, 0.011).hex;
+  const lighterColor = warna.lighten(color2, 0.01).hex;
   const gradient = new warna.Gradient(color1, lighterColor);
   const colors = gradient.getSlices(10, 'hex');
 
@@ -112,4 +112,62 @@ export const selectAll = (array, luminosity, mixed, chosenGroup) => {
   });
 
   return arr;
-}
+};
+
+// export const removeClicks = (array) => {
+//   const arr = array.map(item => {
+//     if (item.isClicked === true) {
+//       item.isClicked = false;
+
+//       return item;
+//     }
+//     return item;
+//   }) 
+// };
+
+// export const removeAllColors = (chosenArray, removeArray) => {
+//   const arr = removeArray.map(item => {
+//     if (item.isClicked === true) {
+//       return item;
+//     }
+//     return '';
+//   });
+//   const selectArr = [];
+
+//   for (let i = 0; i < chosenArray.length; i++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       if(chosenArray[i] === arr[j].color) {
+//         continue;
+//       }
+//         selectArr.push(chosenArray[i]);
+
+//     }
+//   }
+//   console.log(selectArr);
+//   for (let i = selectArr.length; i < 10; i++) {
+//     selectArr.push('$f5f5f5')
+//   }
+// };
+
+
+// const removeArray = [
+//   {
+//     color: '#f0f0f0',
+//     isClicked: true,
+//   },
+//   {
+//     color: '#fafafa',
+//     isClicked: true,
+//   }
+// ]
+
+// const chosenArray = [
+//      '#ffffff',
+//      '#f0f0f0',
+//      '#fafafa',
+//     '#f4f4f4'
+// ]
+
+// const test = removeAllColors(chosenArray,removeArray)
+
+// console.log(test)
