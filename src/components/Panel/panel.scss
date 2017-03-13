@@ -31,6 +31,12 @@
       .panel__color-icon--active {
         display: none;
       }
+      &:hover {
+       .panel__color-icon--hover {
+          display: block;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
   &__color-icon {

@@ -8,10 +8,10 @@ export default class ColorItem extends Component {
   }
 
   state = {
-    isClicked: false,
+    isClicked: this.props.isClicked,
   }
 
-  itemClicked = () => {
+  itemClick = () => {
     this.setState({ isClicked: !this.state.isClicked });
   }
 
@@ -24,7 +24,7 @@ export default class ColorItem extends Component {
       <div className={classPanel} style={{backgroundColor: this.props.color}} />
       :
       (<div className={classPanel} style={{backgroundColor: this.props.color, cursor: 'pointer'}} onClick={() =>{
-        this.itemClicked();
+        this.itemClick();
         this.props.onClickAddColor(this.state.isClicked);
       }}>
         <span className={classIcon}></span>

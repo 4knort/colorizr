@@ -12,6 +12,12 @@ const initialState = {
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.DELETE_COLOR: {
+      return {
+        ...state,
+        chosenColorsGroup: helpers.deleteColor(state.chosenColorsGroup.slice(0), action.payload),  
+      };
+    }
     case types.TOGGLE_PICKER: {
       return {
         ...state,

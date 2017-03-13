@@ -26,3 +26,10 @@ export function toggleColorPicker() {
     type: types.TOGGLE_PICKER,
   };
 }
+
+export function deleteColor(color) {
+  return {
+    type: types.DELETE_COLOR,
+    payload: color,
+  };
+}

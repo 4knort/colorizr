@@ -5,14 +5,32 @@ export const getGradient = (color) => {
   const gradient = new warna.Gradient(color, lighterColor);
   const colors = gradient.getSlices(10, 'hex');
 
-  return colors;
+  const arr = [];
+
+  for (let i = 0; i < 10; i++) {
+    arr.push({
+      color: colors[i],
+      isClicked: false,
+    });
+  }
+
+  return arr;
 };
 
 export const getMixedGradient = (color1, color2) => {
   const gradient = new warna.Gradient(color1, color2);
   const colors = gradient.getSlices(10, 'hex');
 
-  return colors;
+  const arr = [];
+
+  for (let i = 0; i < 10; i++) {
+    arr.push({
+      color: colors[i],
+      isClicked: false,
+    });
+  }
+  
+  return arr;
 };
 
 export const getArrayEmptyColors = () => {
