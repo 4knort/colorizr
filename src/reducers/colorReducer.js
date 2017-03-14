@@ -22,6 +22,8 @@ export default function colorReducer(state = initialState, action) {
           action.payload,
           state.luminosityGroup.slice(0),
           state.mixedGroup.slice(0),
+          state.flatColors.slice(0),
+          state.materialColors.slice(0),
           state.chosenColorsGroup.slice(0),
         ),
         luminosityGroup: action.payload.map((item, index) => {
@@ -48,6 +50,8 @@ export default function colorReducer(state = initialState, action) {
         chosenColorsGroup: helpers.deleteColor(state.chosenColorsGroup.slice(0), action.payload),
         luminosityGroup: helpers.deleteGroupColor(state.luminosityGroup.slice(0), action.payload),
         mixedGroup: helpers.deleteGroupColor(state.mixedGroup.slice(0), action.payload),
+        flatColors: helpers.deleteGroupColor(state.flatColors.slice(0), action.payload),
+        materialColors: helpers.deleteGroupColor(state.materialColors.slice(0), action.payload),
       };
     }
     case types.TOGGLE_PICKER: {
@@ -63,6 +67,8 @@ export default function colorReducer(state = initialState, action) {
           state.chosenColorsGroup.slice(0),
           state.luminosityGroup.slice(0),
           state.mixedGroup.slice(0),
+          state.flatColors.slice(0),
+          state.materialColors.slice(0),
           action.payload
         ),
         luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),

@@ -7,6 +7,10 @@ export default class ExploreColor extends Component {
     isClicked: PropTypes.bool.isRequired,
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ isClicked: nextProps.isClicked });
+  }
+  
   state = {
     isClicked: this.props.isClicked,
   }
@@ -16,8 +20,9 @@ export default class ExploreColor extends Component {
   }
 
   render() {
+    const activeClass = this.state.isClicked ? 'colors__item colors__item--active' : 'colors__item'
     return (
-      <div className="colors__item" onClick={() => {
+      <div className={activeClass} onClick={() => {
         this.itemClick();
         this.props.onClickAddColor(this.state.isClicked);
       }}>

@@ -83,7 +83,7 @@ export const deleteGroupColor = (array, color) => {
   return arr;
 };
 
-export const addColor = (array, luminosity, mixed, color) => {
+export const addColor = (array, luminosity, mixed, flat, material, color) => {
   const emptyColor = '#f5f5f5';
 
   let arr = array.filter(item => {
@@ -93,6 +93,8 @@ export const addColor = (array, luminosity, mixed, color) => {
   if (arr.length >= 10) {
     deleteGroupColor(luminosity, arr[0]);
     deleteGroupColor(mixed, arr[0]);
+    deleteGroupColor(flat, arr[0]);
+    deleteGroupColor(material, arr[0]);
     arr = arr.slice(1);
     arr.push(color);
   } else {
@@ -106,10 +108,12 @@ export const addColor = (array, luminosity, mixed, color) => {
   return arr;
 };
 
-export const selectAll = (array, luminosity, mixed, chosenGroup) => {
+export const selectAll = (array, luminosity, mixed, flat, material, chosenGroup) => {
   const arr = array.map((item, index) => {
     deleteGroupColor(luminosity, chosenGroup[index]);
     deleteGroupColor(mixed, chosenGroup[index]);
+    deleteGroupColor(flat, chosenGroup[index]);
+    deleteGroupColor(material, chosenGroup[index]);
 
     return item.color;
   });
