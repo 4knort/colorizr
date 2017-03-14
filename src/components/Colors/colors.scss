@@ -1,0 +1,24 @@
+.colors {
+  margin-bottom: 50px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  &__item {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    &-example {
+      width: 200px;
+      height: 200px;
+      margin-right: 10px;
+    }
+    &-color {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

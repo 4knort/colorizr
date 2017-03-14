@@ -19,7 +19,7 @@ export const getGradient = (color) => {
 
 export const getMixedGradient = (color1, color2) => {
   // to make last color of mixed group
-  //different from first color of luminosity group
+  // different from first color of luminosity group
   const lighterColor = warna.lighten(color2, 0.01).hex;
 
   const gradient = new warna.Gradient(color1, lighterColor);

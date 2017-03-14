@@ -1,46 +1,163 @@
 export const exploreColors = {
   material: [
-            '#d32f2f',
-            '#ad1457',
-            '#6a1b9a',
-            '#4527a0',
-            '#283593',
-            '#1565C0',
-            '#0277bd',
-            '#00838f',
-            '#00695c',
-            '#2e7d32',
-            '#558b2f',
-            '#9e9d24',
-            '#f9a825',
-            '#ff8f00',
-            '#ef6c00',
-            '#d84315',
-            '#4e342e',
-            '#424242',
-            '#37474f'
+            {
+              color: '#d32f2f',
+              isClicked: false,
+            },
+            {
+              color: '#ad1457',
+              isClicked: false,
+            },
+            {
+              color: '#6a1b9a',
+              isClicked: false,
+            },
+            {
+              color: '#4527a0',
+              isClicked: false,
+            },
+            {
+              color: '#283593',
+              isClicked: false,
+            },
+            {
+              color: '#1565C0',
+              isClicked: false,
+            },
+            {
+              color: '#0277bd',
+              isClicked: false,
+            },
+            {
+              color: '#00838f',
+              isClicked: false,
+            },
+            {
+              color: '#00695c',
+              isClicked: false,
+            },
+            {
+              color: '#2e7d32',
+              isClicked: false,
+            },
+            {
+              color: '#558b2f',
+              isClicked: false,
+            },
+            {
+              color: '#9e9d24',
+              isClicked: false,
+            },
+            {
+              color: '#f9a825',
+              isClicked: false,
+            },
+            {
+              color: '#ff8f00',
+              isClicked: false,
+            },
+            {
+              color: '#ef6c00',
+              isClicked: false,
+            },
+            {
+              color: '#d84315',
+              isClicked: false,
+            },
+            {
+              color: '#4e342e',
+              isClicked: false,
+            },
+            {
+              color: '#424242',
+              isClicked: false,
+            },
+            {
+              color: '#37474f',
+              isClicked: false,
+            },
             ],
 
   flat:     [
-            '#26b99a',
-            '#4fba6f',
-            '#14a085',
-            '#24ae5f',
-            '#3b97d3',
-            '#2980ba',
-            '#955ba5',
-            '#894b9d',
-            '#35495e',
-            '#2c3e50',
-            '#f0c419',
-            '#f29c1f',
-            '#e57e25',
-            '#d25627',
-            '#e64c3c',
-            '#c03a2b',
-            '#ecf0f1',
-            '#bdc3c7',
-            '#95a5a5',
-            '#7f8c8d'
+            {
+              color: '#26b99a',
+              isClicked: false,
+            },
+            {
+              color: '#4fba6f',
+              isClicked: false,
+            },
+            {
+              color: '#14a085',
+              isClicked: false,
+            },
+            {
+              color: '#24ae5f',
+              isClicked: false,
+            },
+            {
+              color: '#3b97d3',
+              isClicked: false,
+            },
+            {
+              color: '#2980ba',
+              isClicked: false,
+            },
+            {
+              color: '#955ba5',
+              isClicked: false,
+            },
+            {
+              color: '#894b9d',
+              isClicked: false,
+            },
+            {
+              color: '#35495e',
+              isClicked: false,
+            },
+            {
+              color: '#2c3e50',
+              isClicked: false,
+            },
+            {
+              color: '#f0c419',
+              isClicked: false,
+            },
+            {
+              color: '#f29c1f',
+              isClicked: false,
+            },
+            {
+              color: '#e57e25',
+              isClicked: false,
+            },
+            {
+              color: '#d25627',
+              isClicked: false,
+            },
+            {
+              color: '#e64c3c',
+              isClicked: false,
+            },
+            {
+              color: '#c03a2b',
+              isClicked: false,
+            },
+            {
+              color: '#ecf0f1',
+              isClicked: false,
+            },
+            {
+              color: '#bdc3c7',
+              isClicked: false,
+            },
+            {
+              color: '#95a5a5',
+              isClicked: false,
+            },
+            {
+              color: '#7f8c8d',
+              isClicked: false,
+            },
             ]
 }

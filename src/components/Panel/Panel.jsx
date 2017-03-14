@@ -31,7 +31,7 @@ const Panel = (props) => {
   return (
     <div className="panel">
       <h2 className="panel__title">{props.title} {colorPanel}</h2>
-      {description}
+        {description}
       <div className="panel__colors">
         {props.children}
       </div>

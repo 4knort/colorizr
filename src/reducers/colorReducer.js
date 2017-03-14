@@ -1,6 +1,6 @@
 import * as types from 'constants/actionTypes';
 import * as helpers from '../helpers/functions';
-import exploreColors from '../helpers/exploreColors';
+import { exploreColors } from '../helpers/exploreColors';
 
 const initialState = {
   isColorPickerOpened: false,
@@ -9,7 +9,8 @@ const initialState = {
   chosenColorsGroup: helpers.getArrayEmptyColors(),
   luminosityGroup: helpers.getGradient('#000000'),
   mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
-  exploringColors: exploreColors,
+  flatColors: exploreColors.flat,
+  materialColors: exploreColors.material,
 };
 
 export default function colorReducer(state = initialState, action) {
@@ -66,6 +67,8 @@ export default function colorReducer(state = initialState, action) {
         ),
         luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),
         mixedGroup: helpers.clickColorItem(state.mixedGroup.slice(0), action.payload),
+        flatColors: helpers.clickColorItem(state.flatColors.slice(0), action.payload),
+        materialColors: helpers.clickColorItem(state.materialColors.slice(0), action.payload),
       };
     }
     case types.CHOOSE_COLOR: {
