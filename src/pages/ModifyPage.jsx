@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { ModifyPicker } from 'containers';
-import { Panel, ColorItem } from 'components';
+import { Panel, ColorItem, ModifyInputs } from 'components';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
@@ -26,6 +26,9 @@ const ModifyPage = ({ deleteColor, chosenColorsGroup }) => {
           {chosenColors}
         </Panel>
         <ModifyPicker />
+        <div className="modifiers-wrap">
+          <ModifyInputs />
+        </div>
       </div>
     </div>
   );

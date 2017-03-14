@@ -6,6 +6,7 @@ const initialState = {
   isColorPickerOpened: false,
   chosenColor: '#000000',
   mixedColor: '#ff0000',
+  modifyColor: '#ff00ff',
   chosenColorsGroup: helpers.getArrayEmptyColors(),
   luminosityGroup: helpers.getGradient('#000000'),
   mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
