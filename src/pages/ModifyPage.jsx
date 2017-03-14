@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { ModifyPicker } from 'containers';
-import { Panel, ColorItem, ModifyInputs } from 'components';
+import { Panel, ColorItem, ModifyInputs, ModifiedColor } from 'components';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
-const ModifyPage = ({ deleteColor, chosenColorsGroup }) => {
+import './css/modified-page.scss';
+
+const ModifyPage = ({ deleteColor, chosenColorsGroup, modifyColor }) => {
   const onClickDeleteColor = (color) => {
     if (color !== '#f5f5f5') {
       deleteColor(color);
@@ -28,6 +30,7 @@ const ModifyPage = ({ deleteColor, chosenColorsGroup }) => {
         <ModifyPicker />
         <div className="modifiers-wrap">
           <ModifyInputs />
+          <ModifiedColor color={modifyColor} />
         </div>
       </div>
     </div>
@@ -41,4 +44,5 @@ ModifyPage.propTypes = {
 
 export default connect(state => ({
   chosenColorsGroup: state.colorReducer.chosenColorsGroup,
+  modifyColor: state.colorReducer.modifyColor,
 }), colorActions)(ModifyPage);

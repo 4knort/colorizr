@@ -7,3 +7,4 @@ export ColorItem from './ColorItem/ColorItem';
 export Colors from './Colors/Colors';
 export ExploreColor from './ExploreColor/ExploreColor';
 export ModifyInputs from './ModifyInputs/ModifyInputs';
+export ModifiedColor from './ModifiedColor/ModifiedColor';

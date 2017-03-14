@@ -120,3 +120,20 @@ export const selectAll = (array, luminosity, mixed, flat, material, chosenGroup)
 
   return arr;
 };
+
+export const modify = (color, modifier, percent) => {
+  let modifiedColor = '';
+  const modifiedPercent = percent / 100;
+  switch (modifier) {
+    case 'darken': {
+      modifiedColor = warna.darken(color, modifiedPercent).hex;
+      break
+    }
+    case 'lighten': {
+      modifiedColor = warna.lighten(color, modifiedPercent).hex;
+      break
+    }
+  }
+
+  return modifiedColor;
+};
