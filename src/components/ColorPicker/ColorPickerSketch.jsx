@@ -3,7 +3,7 @@ import { SketchPicker } from 'react-color';
 
 import './color-picker.scss';
 
-const ColorPicker = ({ title, handleChange, defaultColor, isColorPickerOpened, width }) => {
+const ColorPickerSketch = ({ title, handleChange, defaultColor, isColorPickerOpened, width }) => {
   const pickerTitle = title ? <h1 className="color-picker-container__title">{title}</h1> : '';
   const pickerOpened = isColorPickerOpened ?
     'color-picker-container color-picker-container--active'
@@ -24,7 +24,7 @@ const ColorPicker = ({ title, handleChange, defaultColor, isColorPickerOpened, w
   );
 };
 
-ColorPicker.propTypes = {
+ColorPickerSketch.propTypes = {
   handleChange: PropTypes.func.isRequired,
   defaultColor: PropTypes.string.isRequired,
   isColorPickerOpened: PropTypes.bool,
@@ -32,4 +32,4 @@ ColorPicker.propTypes = {
   title: PropTypes.string,
 };
 
-export default ColorPicker;
+export default ColorPickerSketch;

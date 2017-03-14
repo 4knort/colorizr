@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ColorPicker } from 'components';
+import { ColorPickerSketch } from 'components';
 import * as colorActions from '../actions/colorActions';
 
 const LuminosityGroup = ({ chooseColor }) => {
@@ -8,7 +8,7 @@ const LuminosityGroup = ({ chooseColor }) => {
     chooseColor(color);
   };
 
-  return <ColorPicker title={'Choose the color'} defaultColor={'#000000'} handleChange={handleChangeColor} />;
+  return <ColorPickerSketch title={'Choose the color'} defaultColor={'#000000'} handleChange={handleChangeColor} />;
 };
 
 LuminosityGroup.propTypes = {

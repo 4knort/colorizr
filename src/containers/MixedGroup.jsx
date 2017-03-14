@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ColorPicker } from 'components';
+import { ColorPickerSketch } from 'components';
 import * as colorActions from '../actions/colorActions';
 
 const MixedGroup = ({ chooseMixedColor, isColorPickerOpened }) => {
@@ -8,7 +8,7 @@ const MixedGroup = ({ chooseMixedColor, isColorPickerOpened }) => {
     chooseMixedColor(color);
   };
 
-  return <ColorPicker width={220} isColorPickerOpened={isColorPickerOpened} defaultColor={'#ff0000'} handleChange={handleChangeColor} />;
+  return <ColorPickerSketch width={220} isColorPickerOpened={isColorPickerOpened} defaultColor={'#ff0000'} handleChange={handleChangeColor} />;
 };
 
 MixedGroup.propTypes = {

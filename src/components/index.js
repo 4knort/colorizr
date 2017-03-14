@@ -1,5 +1,6 @@
 export App from './App/App';
-export ColorPicker from './ColorPicker/ColorPicker';
+export ColorPickerSketch from './ColorPicker/ColorPickerSketch';
+export ColorPickerChrome from './ColorPicker/ColorPickerChrome';
 export Header from './Header/Header';
 export Panel from './Panel/Panel';
 export ColorItem from './ColorItem/ColorItem';
