@@ -40,3 +40,25 @@ export function selectAll(colors) {
     payload: colors,
   };
 }
+
+export function changeColor(modifier, percent) {
+  return {
+    type: types.MODIFY_COLOR,
+    payload: {
+      modifier,
+      percent,
+    },
+  };
+}
+export function chooseModifiedColor(color) {
+  return {
+    type: types.CHOOSE_MODIFIED_COLOR,
+    payload: color,
+  };
+}
+export function modifyColorAdd() {
+  return {
+    type: types.MODIFY_COLOR_ADD,
+    payload: false,
+  };
+}

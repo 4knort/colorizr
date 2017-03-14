@@ -7,6 +7,7 @@ const initialState = {
   chosenColor: '#000000',
   mixedColor: '#ff0000',
   modifyColor: '#ff00ff',
+  modifyColorIsAdded: false,
   chosenColorsGroup: helpers.getArrayEmptyColors(),
   luminosityGroup: helpers.getGradient('#000000'),
   mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
@@ -16,6 +17,30 @@ const initialState = {
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.MODIFY_COLOR_ADD: {
+      return {
+        ...state,
+        modifyColorIsAdded: true,
+      };
+    }
+    case types.MODIFY_COLOR: {
+      return {
+        ...state,
+        modifyColor: helpers.modify(
+          state.modifyColor,
+          action.payload.modifier,
+          action.payload.percent,
+        ),
+        modifyColorIsAdded: false,
+      };
+    }
+    case types.CHOOSE_MODIFIED_COLOR: {
+      return {
+        ...state,
+        modifyColor: action.payload.hex,
+        modifyColorIsAdded: false,
+      };
+    }
     case types.SELECT_ALL: {
       return {
         ...state,
@@ -27,6 +52,7 @@ export default function colorReducer(state = initialState, action) {
           state.materialColors.slice(0),
           state.chosenColorsGroup.slice(0),
         ),
+        modifyColorIsAdded: false,
         luminosityGroup: action.payload.map((item, index) => {
           if (item.color === state.luminosityGroup[index].color) {
             item.isClicked = true;
@@ -53,6 +79,7 @@ export default function colorReducer(state = initialState, action) {
         mixedGroup: helpers.deleteGroupColor(state.mixedGroup.slice(0), action.payload),
         flatColors: helpers.deleteGroupColor(state.flatColors.slice(0), action.payload),
         materialColors: helpers.deleteGroupColor(state.materialColors.slice(0), action.payload),
+        modifyColorIsAdded: false,
       };
     }
     case types.TOGGLE_PICKER: {
@@ -76,6 +103,7 @@ export default function colorReducer(state = initialState, action) {
         mixedGroup: helpers.clickColorItem(state.mixedGroup.slice(0), action.payload),
         flatColors: helpers.clickColorItem(state.flatColors.slice(0), action.payload),
         materialColors: helpers.clickColorItem(state.materialColors.slice(0), action.payload),
+        modifyColorIsAdded: false,
       };
     }
     case types.CHOOSE_COLOR: {

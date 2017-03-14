@@ -6,14 +6,28 @@ import * as colorActions from '../actions/colorActions';
 
 import './css/modified-page.scss';
 
-const ModifyPage = ({ deleteColor, chosenColorsGroup, modifyColor }) => {
-  const onClickDeleteColor = (color) => {
-    if (color !== '#f5f5f5') {
-      deleteColor(color);
+const ModifyPage = (props) => {
+
+  const onClickAddColor = (isAdded, color) => {
+    if (!isAdded) {
+      props.addColor(color);
+      props.modifyColorAdd();
+    } else {
+      props.deleteColor(color);
     }
   };
 
-  const chosenColors = chosenColorsGroup.map((color, index) => (
+  const onClickDeleteColor = (color) => {
+    if (color !== '#f5f5f5') {
+      props.deleteColor(color);
+    }
+  };
+
+  const onChangeColor = (modifier, percent) => {
+    props.changeColor(modifier, percent);
+  };
+
+  const chosenColors = props.chosenColorsGroup.map((color, index) => (
     <ColorItem
       key={`chosen-${index}`}
       choose color={color}
@@ -29,8 +43,14 @@ const ModifyPage = ({ deleteColor, chosenColorsGroup, modifyColor }) => {
         </Panel>
         <ModifyPicker />
         <div className="modifiers-wrap">
-          <ModifyInputs />
-          <ModifiedColor color={modifyColor} />
+          <ModifyInputs 
+            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }} 
+          />
+          <ModifiedColor
+            isAdded={props.modifyColorIsAdded}
+            color={props.modifyColor}
+            onClickAddColor={(isAdded, color) => { onClickAddColor(isAdded, color); }}
+          />
         </div>
       </div>
     </div>
@@ -39,10 +59,13 @@ const ModifyPage = ({ deleteColor, chosenColorsGroup, modifyColor }) => {
 
 ModifyPage.propTypes = {
   chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  deleteColor: PropTypes.func.isRequired,
+  modifyColor: PropTypes.string.isRequired,
+  modifyColorIsAdded: PropTypes.bool.isRequired,
+  modifyColorAdd: PropTypes.func.isRequired,
 };
 
 export default connect(state => ({
   chosenColorsGroup: state.colorReducer.chosenColorsGroup,
   modifyColor: state.colorReducer.modifyColor,
+  modifyColorIsAdded: state.colorReducer.modifyColorIsAdded,
 }), colorActions)(ModifyPage);

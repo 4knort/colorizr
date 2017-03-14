@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class ModifyInputs extends Component {
+  static propTypes = {
+    changeColor: PropTypes.func.isRequired,
+  }
+
   state = {
     darkenInput: 10,
     lightenInput: 10,
@@ -27,6 +31,19 @@ export default class ModifyInputs extends Component {
     }
   }
 
+  onBlur = () => {
+    if (this.state.darkenInput > 100) {
+      this.setState({
+        darkenInput: 100,
+      });
+    }
+    if (this.state.lightenInput > 100) {
+      this.setState({
+        lightenInput: 100,
+      });
+    }
+  }
+
   render() {
     return (
       <div className="modify-inputs">
@@ -37,9 +54,10 @@ export default class ModifyInputs extends Component {
             value={this.state.darkenInput}
             onChange={(e) => { this.onChange(e, 'darken'); }}
             onKeyDown={this.handleKeyDown}
+            onBlur={this.onBlur}
             className="modify-inputs__input"
           />
-          <button className="modify-inputs__button">Darken</button>
+          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('darken', this.state.darkenInput)}}>Darken</button>
         </div>
         <div className="modify-inputs__modifiers">
           <span className="modify-inputs__percent">%</span>
@@ -48,9 +66,10 @@ export default class ModifyInputs extends Component {
             value={this.state.lightenInput}
             onChange={(e) => { this.onChange(e, 'lighten'); }}
             onKeyDown={this.handleKeyDown}
+            onBlur={this.onBlur}
             className="modify-inputs__input"
           />
-          <button className="modify-inputs__button">Lighten</button>
+          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.darkenInput)}}>Lighten</button>
         </div>
       </div>
     );

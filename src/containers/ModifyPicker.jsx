@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { ColorPickerChrome } from 'components';
 import * as colorActions from '../actions/colorActions';
 
-const ModifyPicker = ({ modifyColor }) => {
-  return <ColorPickerChrome defaultColor={modifyColor} />;
+const ModifyPicker = ({ modifyColor, chooseModifiedColor }) => {
+  const handleChangeColor = (color) => {
+    chooseModifiedColor(color);
+  };
+
+  return <ColorPickerChrome defaultColor={modifyColor} handleChange={handleChangeColor} />;
 };
 
 ModifyPicker.propTypes = {
-
+  chooseModifiedColor: PropTypes.func.isRequired,
+  modifyColor: PropTypes.string.isRequired,
 };
 
 export default connect(state => ({
