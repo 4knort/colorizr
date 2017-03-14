@@ -7,7 +7,6 @@ import * as colorActions from '../actions/colorActions';
 import './css/modified-page.scss';
 
 const ModifyPage = (props) => {
-
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
       props.addColor(color);
@@ -26,6 +25,10 @@ const ModifyPage = (props) => {
   const onChangeColor = (modifier, percent) => {
     props.changeColor(modifier, percent);
   };
+
+  const getRandomModify = () => {
+    props.getRandomModifyColor();
+  }
 
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
     <ColorItem
@@ -50,6 +53,7 @@ const ModifyPage = (props) => {
             isAdded={props.modifyColorIsAdded}
             color={props.modifyColor}
             onClickAddColor={(isAdded, color) => { onClickAddColor(isAdded, color); }}
+            getRandomModifyColor={() => {getRandomModify()}}
           />
         </div>
       </div>
@@ -62,6 +66,7 @@ ModifyPage.propTypes = {
   modifyColor: PropTypes.string.isRequired,
   modifyColorIsAdded: PropTypes.bool.isRequired,
   modifyColorAdd: PropTypes.func.isRequired,
+  getRandomModifyColor: PropTypes.func.isRequired,
 };
 
 export default connect(state => ({

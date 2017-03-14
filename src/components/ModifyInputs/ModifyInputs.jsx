@@ -10,7 +10,7 @@ export default class ModifyInputs extends Component {
     lightenInput: 10,
   }
 
-  keyCodes = [48, 49, 50, 51, 52, 53, 54, 55, 56, 97, 98, 99, 100, 101, 102, 103, 104, 105, 8, 46];
+  keyCodes = [48, 49, 50, 51, 52, 53, 54, 55, 56, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 8, 46];
 
   onChange = (e, input) => {
     if (input === 'darken') {
@@ -69,7 +69,7 @@ export default class ModifyInputs extends Component {
             onBlur={this.onBlur}
             className="modify-inputs__input"
           />
-          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.darkenInput)}}>Lighten</button>
+          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.lightenInput)}}>Lighten</button>
         </div>
       </div>
     );

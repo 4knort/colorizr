@@ -17,6 +17,13 @@ const initialState = {
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.RANDOM_MODIFY_COLOR: {
+      return {
+        ...state,
+        modifyColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
+        modifyColorIsAdded: false,
+      };
+    }
     case types.MODIFY_COLOR_ADD: {
       return {
         ...state,

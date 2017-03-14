@@ -56,9 +56,16 @@ export function chooseModifiedColor(color) {
     payload: color,
   };
 }
+
 export function modifyColorAdd() {
   return {
     type: types.MODIFY_COLOR_ADD,
     payload: false,
+  };
+}
+
+export function getRandomModifyColor() {
+  return {
+    type: types.RANDOM_MODIFY_COLOR,
   };
 }
