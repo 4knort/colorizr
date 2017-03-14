@@ -18,15 +18,14 @@ export default function colorReducer(state = initialState, action) {
       return {
         ...state,
         chosenColorsGroup: helpers.selectAll(
-          action.payload, 
+          action.payload,
           state.luminosityGroup.slice(0),
-          state.mixedGroup.slice(0), 
-          state.chosenColorsGroup.slice(0), 
+          state.mixedGroup.slice(0),
+          state.chosenColorsGroup.slice(0),
         ),
         luminosityGroup: action.payload.map((item, index) => {
           if (item.color === state.luminosityGroup[index].color) {
             item.isClicked = true;
-            
             return item;
           }
           return state.luminosityGroup[index];
@@ -60,9 +59,9 @@ export default function colorReducer(state = initialState, action) {
       return {
         ...state,
         chosenColorsGroup: helpers.addColor(
-          state.chosenColorsGroup.slice(0), 
+          state.chosenColorsGroup.slice(0),
           state.luminosityGroup.slice(0),
-          state.mixedGroup.slice(0), 
+          state.mixedGroup.slice(0),
           action.payload
         ),
         luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),

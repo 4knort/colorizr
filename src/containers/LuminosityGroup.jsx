@@ -11,4 +11,8 @@ const LuminosityGroup = ({ chooseColor }) => {
   return <ColorPicker title={'Choose the color'} defaultColor={'#000000'} handleChange={handleChangeColor} />;
 };
 
+LuminosityGroup.propTypes = {
+  chooseColor: PropTypes.func.isRequired,
+};
+
 export default connect(null, colorActions)(LuminosityGroup);

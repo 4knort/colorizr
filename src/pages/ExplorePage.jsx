@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Panel, ColorItem } from 'components';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
@@ -11,10 +11,10 @@ const ExplorePage = (props) => {
   };
 
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
-    <ColorItem 
-      key={`chosen-${index}`} 
-      choose color={color} 
-      onClickAddColor={() => { onClickDeleteColor(color) }} 
+    <ColorItem
+      key={`chosen-${index}`}
+      choose color={color}
+      onClickAddColor={() => { onClickDeleteColor(color); }}
     />
   ));
 
@@ -27,6 +27,10 @@ const ExplorePage = (props) => {
       </div>
     </div>
   );
+};
+
+ExplorePage.propTypes = {
+  chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };
 
 export default connect(state => ({

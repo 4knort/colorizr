@@ -11,6 +11,11 @@ const MixedGroup = ({ chooseMixedColor, isColorPickerOpened }) => {
   return <ColorPicker width={220} isColorPickerOpened={isColorPickerOpened} defaultColor={'#ff0000'} handleChange={handleChangeColor} />;
 };
 
+MixedGroup.propTypes = {
+  chooseMixedColor: PropTypes.func.isRequired,
+  isColorPickerOpened: PropTypes.bool.isRequired,
+};
+
 export default connect(state => ({
   isColorPickerOpened: state.colorReducer.isColorPickerOpened,
 }), colorActions)(MixedGroup);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as colorActions from '../../actions/colorActions';
 
@@ -13,18 +13,21 @@ const Panel = (props) => {
     props.onClick(colors);
   };
 
-  const buttons = props.isChosenPanel ? ''
+  const buttons = props.isChosenPanel ?
+      ''
     :
-    (<div className="panel__btns">
-      <button onClick={() => {selectAllColors(props.colors)}}>Select All</button>
-    </div>);
+      (<div className="panel__btns">
+        <button onClick={() => { selectAllColors(props.colors); }}>Select All</button>
+      </div>);
 
-  const colorPanel = 
-    props.isColorPicker ? 
-    <span className="panel__color-block" style={{ backgroundColor: props.mixedColor }} onClick={handleClick}></span> 
-    : 
-    '';
+  const colorPanel =
+    props.isColorPicker ?
+      <span className="panel__color-block" style={{ backgroundColor: props.mixedColor }} onClick={handleClick} />
+    :
+      '';
+
   const description = props.isChosenPanel ? <p className="panel__description">Select Colors by clicking on them</p> : '';
+
   return (
     <div className="panel">
       <h2 className="panel__title">{props.title} {colorPanel}</h2>
@@ -35,6 +38,16 @@ const Panel = (props) => {
       {buttons}
     </div>
   );
+};
+
+Panel.propTypes = {
+  children: PropTypes.any.isRequired,
+  onClick: PropTypes.func,
+  isChosenPanel: PropTypes.bool,
+  isColorPicker: PropTypes.bool,
+  colors: PropTypes.arrayOf(React.PropTypes.object),
+  mixedColor: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default connect(state => ({

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Panel, ColorItem } from 'components';
 import { LuminosityGroup, MixedGroup } from 'containers';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
-const IndexPage = ( props ) => {
+const IndexPage = (props) => {
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
       props.addColor(color);
@@ -24,26 +24,27 @@ const IndexPage = ( props ) => {
   };
 
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
-    <ColorItem 
-      key={`chosen-${index}`} 
-      choose color={color} 
-      onClickAddColor={() => { onClickDeleteColor(color) }} 
+    <ColorItem
+      key={`chosen-${index}`}
+      isChosenPanel
+      color={color}
+      onClickAddColor={() => { onClickDeleteColor(color); }}
     />
   ));
   const luminosityColors = props.luminosityGroup.map((item, index) => (
-    <ColorItem 
+    <ColorItem
       key={`luminosity-${index}`}
       isClicked={item.isClicked}
       color={item.color}
-      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} 
+      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
     />
   ));
   const mixedColors = props.mixedGroup.map((item, index) => (
-    <ColorItem 
+    <ColorItem
       key={`mixed-${index}`}
       isClicked={item.isClicked}
       color={item.color}
-      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color) }} 
+      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
     />
   ));
 
@@ -64,6 +65,13 @@ const IndexPage = ( props ) => {
       </div>
     </div>
   );
+};
+
+IndexPage.propTypes = {
+  chosenColor: PropTypes.string.isRequired,
+  chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  luminosityGroup: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  mixedGroup: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
 export default connect(state => ({
