@@ -69,3 +69,15 @@ export function getRandomModifyColor() {
     type: types.RANDOM_MODIFY_COLOR,
   };
 }
+
+export function createExportGroup() {
+  return {
+    type: types.CREATE_EXPORT_GROUP,
+  };
+}
+export function changeVarName(value, id) {
+  return {
+    type: types.CHANGE_VAR_NAME,
+    payload: {value, id},
+  };
+}

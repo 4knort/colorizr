@@ -127,13 +127,48 @@ export const modify = (color, modifier, percent) => {
   switch (modifier) {
     case 'darken': {
       modifiedColor = warna.darken(color, modifiedPercent).hex;
-      break
+      break;
     }
     case 'lighten': {
       modifiedColor = warna.lighten(color, modifiedPercent).hex;
-      break
+      break;
     }
   }
 
   return modifiedColor;
+};
+
+export const createExport = (array) => {
+  const defaultColor = '#f5f5f5';
+  const arr = [];
+
+  array.filter((item, index) => {
+    if (item !== defaultColor) {
+      const color = warna.parse(item);
+      const obj = {
+        color: color.hex,
+        rgb: color.rgb,
+        variable: `color-${index}`,
+        id: index,
+      };
+
+      arr.push(obj);
+    }
+  });
+
+  return arr;
+};
+
+export const changeVarName = (array, exportItem) => {
+  const arr = array.map(item => {
+    if (item.id === exportItem.id) {
+      item.variable = exportItem.value;
+
+      return item;
+    }
+
+    return item;
+  });
+
+  return arr;
 };

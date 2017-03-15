@@ -13,10 +13,23 @@ const initialState = {
   mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
   flatColors: exploreColors.flat,
   materialColors: exploreColors.material,
+  exportGroup: [],
 };
 
 export default function colorReducer(state = initialState, action) {
   switch (action.type) {
+    case types.CHANGE_VAR_NAME: {
+      return {
+        ...state,
+        exportGroup: helpers.changeVarName(state.exportGroup, action.payload),
+      };
+    }
+    case types.CREATE_EXPORT_GROUP: {
+      return {
+        ...state,
+        exportGroup: helpers.createExport(state.chosenColorsGroup),
+      };
+    }
     case types.RANDOM_MODIFY_COLOR: {
       return {
         ...state,

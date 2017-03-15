@@ -1,7 +1,11 @@
 .export-block {
   &__btn {
+    margin-bottom: 15px;
     &--active {
       background-color: pink;
     }
+  }
+  li {
+    display: block;
   }
 }
