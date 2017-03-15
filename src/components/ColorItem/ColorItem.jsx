@@ -33,7 +33,7 @@ export default class ColorItem extends Component {
         this.itemClick();
         this.props.onClickAddColor(this.state.isClicked);
       }}>
-        <span className={classIcon} />
+        <span className={classIcon}>+</span>
       </div>);
 
     return item;

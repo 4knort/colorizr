@@ -1,30 +1,78 @@
 .panel {
-  padding: 30px;
-  min-height: 100px;
-  background-color: grey;
+  padding: 25px 45px;
+  background-color: #fff;
   position: relative;
+  margin-bottom: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__title {
+    margin: 0;
+    margin-bottom: 20px;
+    line-height: 22px;
+  }
+  &__description {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+  &__btn {
+    padding: 5px 10px;
+    margin-right: 15px;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    &:hover {
+      background-color: $default-grey;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
   &__colors {
-    background-color: green;
-    min-height: 50px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 35px;
+    background-color: $default-grey;
+    margin-left: -45px;
+    margin-right: -45px;
+    margin-bottom: 25px;
+    &--choose {
+      display: block;
+      background-color: #FFF;
+      margin-bottom: 0;
+    }
   }
   &__color-block {
-    width: 10px;
-    height: 10px;
-    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
     display: inline-block;
+    vertical-align: bottom;
     cursor: pointer;
+    margin-left: 20px;
   }
   &__color-item {
+    width: 95px;
     height: 50px;
-    width: 50px;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 15px;
     position: relative;
+    border-radius: 5px;
+    &--choose {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+      display: inline-block;
+      vertical-align: top;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
     &:hover {
       .panel__color-icon--hover {
         display: block;
-        transform: rotate(45deg);
       }
     }
     &--choose {
@@ -35,6 +83,9 @@
        .panel__color-icon--hover {
           display: block;
           transform: translate(-50%, -50%);
+          transform: rotate(45deg);
+          top: 21%;
+          left: 39%;
         }
       }
     }
@@ -42,16 +93,34 @@
   &__color-icon {
     display: none;
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: black;
+    color: #000;
+    text-shadow: 1px 1px #fff;
     top: 50%;
     left: 50%;
+    font-size: 26px;
+    line-height: 28px;
     transform: translate(-50%, -50%);
+    &::selection {
+      background-color: transparent;
+    }
+    &::-moz-selection {
+      background-color: transparent;
+    }
     &--active {
       display: block;
+      transform: rotate(45deg);
+      top: 20%;
+      left: 45%;
+    }
+  }
+  .color-picker-container {
+    padding-top: 0;
+    position: absolute;
+    top: -110px;
+    left: 250px;
+    z-index: 1100;
+    &--active .sketch-picker {
+      display: block !important;
     }
   }
 }
-
-

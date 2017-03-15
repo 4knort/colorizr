@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
+import { Image } from 'components';
 
 import './header.scss';
 
 const Header = () => (
   <header className="header clearfix">
-    <div className="container">
-      <a href="" className="logo">
-        <img src="" alt="" />
+    <div className="container clearfix">
+      <a href="" className="header__logo">
+        <Image image="logoDark" />
       </a>
-      <nav className="header__nav">
+      <ul className="header__nav">
         <li className="header__nav-item">
           <IndexLink to={'/'} activeClassName="header__nav-link--active" className="header__nav-link">Create</IndexLink>
         </li>
@@ -22,7 +23,7 @@ const Header = () => (
         <li className="header__nav-item">
           <Link to={'/export'} activeClassName="header__nav-link--active" className="header__nav-link">Export</Link>
         </li>
-      </nav>
+      </ul>
     </div>
   </header>
 );

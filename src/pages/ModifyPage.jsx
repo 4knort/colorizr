@@ -4,7 +4,7 @@ import { Panel, ColorItem, ModifyInputs, ModifiedColor } from 'components';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
-import './css/modified-page.scss';
+import './css/pages.scss';
 
 const ModifyPage = (props) => {
   const onClickAddColor = (isAdded, color) => {

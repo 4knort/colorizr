@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { PreviewTable, ExportBlock } from 'components';
 import * as colorActions from '../actions/colorActions';
 
+import './css/pages.scss';
+
 @connect(state => ({
   exportGroup: state.colorReducer.exportGroup,
 }), colorActions)

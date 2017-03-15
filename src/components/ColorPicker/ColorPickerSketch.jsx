@@ -8,7 +8,7 @@ const ColorPickerSketch = ({ title, handleChange, defaultColor, isColorPickerOpe
   const pickerOpened = isColorPickerOpened ?
     'color-picker-container color-picker-container--active'
   :
-    'color-picker-container;';
+    'color-picker-container';
 
   const onChange = (color) => {
     handleChange(color);

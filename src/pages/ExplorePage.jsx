@@ -3,6 +3,8 @@ import { Panel, ColorItem, Colors } from 'components';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
+import './css/pages.scss';
+
 const ExplorePage = ({ deleteColor, chosenColorsGroup, flatColors, materialColors }) => {
   const onClickDeleteColor = (color) => {
     if (color !== '#f5f5f5') {

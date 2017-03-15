@@ -4,6 +4,8 @@ import { LuminosityGroup, MixedGroup } from 'containers';
 import { connect } from 'react-redux';
 import * as colorActions from '../actions/colorActions';
 
+import './css/pages.scss';
+
 const IndexPage = (props) => {
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
@@ -52,7 +54,7 @@ const IndexPage = (props) => {
     <div className="index-page" style={{ backgroundColor: props.chosenColor }}>
       <div className="container">
         <LuminosityGroup />
-        <Panel isChosenPanel title={'Select up to 10 colors'}>
+        <Panel isChosenPanel colorsBlockClass={'panel__colors panel__colors--choose'} title={'Select up to 10 colors'}>
           {chosenColors}
         </Panel>
         <Panel onClick={selectAllColors} colors={props.luminosityGroup} title={'Darker and Lighter'}>

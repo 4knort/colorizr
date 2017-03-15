@@ -4,26 +4,21 @@
   }
 }
 .color-picker-container {
+  padding-top: 80px;
   &__title {
     text-align: center;
     text-shadow: 2px 2px #fff;
     margin: 0;
     margin-bottom: 15px;
-    font-size: 25px;
-    line-height: 30px;
-  }
-  &--active .sketch-picker {
-    display: block !important;
-    position: absolute;
-    top: 0;
-    left: 180px;
-    z-index: 100;
+    font-size: 32px;
+    line-height: 35px;
   }
 
 }
 .sketch-picker {
   margin: 0 auto; 
   cursor: pointer;
+  margin-bottom: 40px;
 }
 .flexbox-fix:nth-child(3) {
   display: none !important;
