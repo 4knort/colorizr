@@ -26,7 +26,9 @@ const Colors = ({ colors, title, addColor, deleteColor }) => {
   return (
     <div className="colors">
       <h2 className="colors__title">{title}</h2>
-      {colorItems}
+      <div className="colors__items">
+        {colorItems}
+      </div>
     </div>
   );
 };

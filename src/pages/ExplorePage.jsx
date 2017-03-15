@@ -16,13 +16,14 @@ const ExplorePage = ({ deleteColor, chosenColorsGroup, flatColors, materialColor
     <ColorItem
       key={`chosen-${index}`}
       choose color={color}
+      isChosenPanel
       onClickAddColor={() => { onClickDeleteColor(color); }}
     />
   ));
   return (
     <div className="explore-page">
       <div className="container">
-        <Panel isChosenPanel title={'Select up to 10 colors'}>
+        <Panel isChosenPanel colorsBlockClass={'panel__colors panel__colors--choose'} title={'Select up to 10 colors'}>
           {chosenColors}
         </Panel>
         <div className="colors-wrap">
