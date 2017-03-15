@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
+
+import './modify-inputs.scss';
 
 export default class ModifyInputs extends Component {
   static propTypes = {
@@ -48,7 +50,7 @@ export default class ModifyInputs extends Component {
     return (
       <div className="modify-inputs">
         <div className="modify-inputs__modifiers">
-          <span className="modify-inputs__percent">%</span>
+          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('darken', this.state.darkenInput)}}>Dark it!</button>
           <input
             type="text"
             value={this.state.darkenInput}
@@ -57,10 +59,10 @@ export default class ModifyInputs extends Component {
             onBlur={this.onBlur}
             className="modify-inputs__input"
           />
-          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('darken', this.state.darkenInput)}}>Darken</button>
+          <span className="modify-inputs__percent">%</span>
         </div>
         <div className="modify-inputs__modifiers">
-          <span className="modify-inputs__percent">%</span>
+          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.lightenInput)}}>Light it!</button>
           <input
             type="text"
             value={this.state.lightenInput}
@@ -69,7 +71,7 @@ export default class ModifyInputs extends Component {
             onBlur={this.onBlur}
             className="modify-inputs__input"
           />
-          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.lightenInput)}}>Lighten</button>
+          <span className="modify-inputs__percent">%</span>
         </div>
       </div>
     );

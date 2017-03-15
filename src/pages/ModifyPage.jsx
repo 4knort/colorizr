@@ -41,20 +41,20 @@ const ModifyPage = (props) => {
 
   return (
     <div className="modify-page">
-      <div className="container">
+      <div className="container clearfix">
         <Panel isChosenPanel colorsBlockClass={'panel__colors panel__colors--choose'} title={'Select up to 10 colors'}>
           {chosenColors}
         </Panel>
         <ModifyPicker />
         <div className="modifiers-wrap">
-          <ModifyInputs
-            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }}
-          />
           <ModifiedColor
             isAdded={props.modifyColorIsAdded}
             color={props.modifyColor}
             onClickAddColor={(isAdded, color) => { onClickAddColor(isAdded, color); }}
             getRandomModifyColor={() => { getRandomModify(); }}
+          />
+          <ModifyInputs
+            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }}
           />
         </div>
       </div>
