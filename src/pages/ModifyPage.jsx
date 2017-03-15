@@ -28,7 +28,7 @@ const ModifyPage = (props) => {
 
   const getRandomModify = () => {
     props.getRandomModifyColor();
-  }
+  };
 
   const chosenColors = props.chosenColorsGroup.map((color, index) => (
     <ColorItem
@@ -46,14 +46,14 @@ const ModifyPage = (props) => {
         </Panel>
         <ModifyPicker />
         <div className="modifiers-wrap">
-          <ModifyInputs 
-            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }} 
+          <ModifyInputs
+            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }}
           />
           <ModifiedColor
             isAdded={props.modifyColorIsAdded}
             color={props.modifyColor}
             onClickAddColor={(isAdded, color) => { onClickAddColor(isAdded, color); }}
-            getRandomModifyColor={() => {getRandomModify()}}
+            getRandomModifyColor={() => { getRandomModify(); }}
           />
         </div>
       </div>
@@ -65,8 +65,6 @@ ModifyPage.propTypes = {
   chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
   modifyColor: PropTypes.string.isRequired,
   modifyColorIsAdded: PropTypes.bool.isRequired,
-  modifyColorAdd: PropTypes.func.isRequired,
-  getRandomModifyColor: PropTypes.func.isRequired,
 };
 
 export default connect(state => ({

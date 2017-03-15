@@ -1,0 +1,13 @@
+.preview-table {
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+  td, th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid;
+    input {
+      width: 95%;
+    }
+  }
+}

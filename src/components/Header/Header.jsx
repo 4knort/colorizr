@@ -19,6 +19,9 @@ const Header = () => (
         <li className="header__nav-item">
           <Link to={'/modify'} activeClassName="header__nav-link--active" className="header__nav-link">Modify</Link>
         </li>
+        <li className="header__nav-item">
+          <Link to={'/export'} activeClassName="header__nav-link--active" className="header__nav-link">Export</Link>
+        </li>
       </nav>
     </div>
   </header>
