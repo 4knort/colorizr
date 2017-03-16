@@ -9,9 +9,15 @@
     transition: all 0.4s ease;
     &:hover {
       border-color: darken($grey-bg, 40%);
+      & + .modify-inputs__percent {
+        border-color: darken($grey-bg, 30%);
+      }
     }
     &:focus {
       border-color: darken($grey-bg, 30%);
+      & + .modify-inputs__percent {
+        border-color: darken($grey-bg, 30%);
+      }
     }
   }
   &__button {

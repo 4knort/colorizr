@@ -1,11 +1,40 @@
 .export-block {
-  &__btn {
-    margin-bottom: 15px;
-    &--active {
-      background-color: pink;
-    }
+  &__list {
+    margin: 0;
+    padding: 15px 20px;
+    list-style-type: none;
+    background-color: $default-grey;
   }
-  li {
-    display: block;
+  &__item {
+    font-size: 15px;
+    line-height: 19px;
+  }
+  &__variable {
+    margin-right: 10px;
+    color: $color-pink;
+  }
+  &__btns {
+    margin-bottom: 15px;
+  }
+  &__btn {
+    display: inline-block;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    color: $color-pink;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    margin-right: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: $grey-bg;
+    }
+    &--active {
+      background-color: $color-pink;
+      color: #FFF;
+      &:hover {
+        background-color: $color-pink;
+      }
+    }
   }
 }

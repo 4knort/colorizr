@@ -26,7 +26,7 @@ export default class ExportPage extends Component {
     return (
       <div className="export-page">
         <div className="container">
-          <h1>Customize and Export colors for Sass or Less</h1>
+          <h1 className="export-page__title">Customize and Export colors for Sass or Less</h1>
           <PreviewTable changeVarName={(value, id) => { this.handleChange(value, id); }} exportGroup={this.props.exportGroup} />
           <ExportBlock exportGroup={this.props.exportGroup} />
         </div>

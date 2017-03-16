@@ -1,11 +1,25 @@
 .preview-table {
   width: 100%;
-  border: 1px solid;
+  border: 1px solid #ccc;
   border-collapse: collapse;
+  &__input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    transition: all 0.4s ease;
+    &:hover {
+      border-color: lighten(#ccc, 10%);
+    }
+    &:focus {
+      border-color: lighten(#ccc, 15%);
+    }
+  }
+  th {
+    background-color: $default-grey;
+  }
   td, th {
     padding: 10px;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #ccc;
     input {
       width: 95%;
     }

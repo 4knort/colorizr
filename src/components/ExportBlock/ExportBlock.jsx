@@ -1,4 +1,4 @@
-import React, { Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import './export-block.scss';
 
@@ -36,7 +36,7 @@ export default class ExportBlock extends Component {
       return (
         <li key={`listItem-${index}`} className="export-block__item">
           <span className="export-block__variable">{`${this.state.preproc}${item.variable}: `}</span>
-          {item.color}
+          {item.color};
         </li>
       );
     });
