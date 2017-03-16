@@ -5,25 +5,22 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
 const pagesBuild = process.env.BUILD === 'pages';
 
 /*********************************** Loaders ***********************************/
 const loaders = [
-  { // react-hot is implemented as babel plugin now
+  { 
     test: /\.(js|jsx)$/,
     loader: 'babel',
     include: path.join(__dirname, 'src'),
     exclude: /node_modules/,
   },
 
-  { // used for all project files and some dependencies
+  { 
     test: /\.scss$/,
-    loader: production
-      ? ExtractTextPlugin.extract(['css', 'postcss', 'sass', 'sass-resources'])
-      : ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap', 'sass-resources'].join('!'),
+    loader: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap', 'sass-resources'].join('!'),
     include: path.join(__dirname, 'src'),
   },
 
@@ -32,13 +29,7 @@ const loaders = [
     loaders: ['style', 'css', 'postcss'],
   },
 
-  { // svg sprites generated only for icons
-    test: /\.svg$/,
-    loader: `svg-sprite?${JSON.stringify({ name: '[hash]', prefixize: true })}`,
-    include: path.join(__dirname, 'src/ui/Icon'),
-  },
-
-  { // other svg images will processed as normal
+  { 
     test: /\.svg$/,
     loader: 'file',
     include: path.join(__dirname, 'src'),
@@ -49,8 +40,8 @@ const loaders = [
 // Plugins used in all builds
 const pluginsBase = [
   new HtmlWebpackPlugin({
-    title: 'React Github Pages Boilerplate',
-    template: 'template.ejs',
+    title: 'Colorizr',
+    template: 'template.html',
   }),
 
   new FaviconsWebpackPlugin({
@@ -71,20 +62,14 @@ const pluginsBase = [
   }),
 
   new webpack.DefinePlugin({
-    'process.env': { // build is used for gh-pages
+    'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV || ''),
     },
   }),
 ];
 
-const developmentPlugins = [
-  ...pluginsBase,
-  new webpack.HotModuleReplacementPlugin(),
-];
-
 const productionPlugins = [
   ...pluginsBase,
-  new ExtractTextPlugin('style.css'),
   new LodashModuleReplacementPlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.DedupePlugin(),
@@ -103,12 +88,6 @@ const productionPlugins = [
   }),
 ];
 
-module.exports.loaders = loaders;
-module.exports.plugins = {
-  base: pluginsBase,
-  development: developmentPlugins,
-  production: productionPlugins,
-};
 
 module.exports = {
   devtool: production ? 'cheap-module-source-map' : 'eval',
@@ -116,9 +95,7 @@ module.exports = {
   entry: production
     ? ['babel-polyfill', './src/index']
     : [
-      'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:3002',
-      'webpack/hot/only-dev-server',
       'babel-polyfill',
       './src/index',
     ],
@@ -126,7 +103,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: pagesBuild ? '/react-challenge-colorizr' : '/',
+    publicPath: pagesBuild ? '/colorizr/' : '/',
   },
 
   resolve: {
@@ -138,7 +115,7 @@ module.exports = {
   },
 
   module: { loaders },
-  plugins: production ? productionPlugins : developmentPlugins,
+  plugins: production ? productionPlugins : pluginsBase,
 
   sassResources: ['./src/styles/variables.scss', './src/styles/mixins.scss'],
   postcss: [autoprefixer({ browsers: ['last 4 versions'] })],

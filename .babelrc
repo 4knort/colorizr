@@ -31,11 +31,5 @@
         "transform-react-pure-class-to-function"
       ]
     },
-
-    "development": {
-      "plugins": [
-        "react-hot-loader/babel",
-      ]
-    }
   }
 }
