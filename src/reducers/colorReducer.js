@@ -8,12 +8,14 @@ const initialState = {
   mixedColor: '#ff0000',
   modifyColor: '#ff00ff',
   modifyColorIsAdded: false,
-  chosenColorsGroup: helpers.getArrayEmptyColors(),
-  luminosityGroup: helpers.getGradient('#000000'),
-  mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
-  flatColors: exploreColors.flat,
-  materialColors: exploreColors.material,
-  exportGroup: [],
+  colors: {
+    chosenColorsGroup: helpers.getArrayEmptyColors(),
+    luminosityGroup: helpers.getGradient('#000000'),
+    mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
+    flatColors: exploreColors.flat,
+    materialColors: exploreColors.material,
+    exportGroup: [],
+  }
 };
 
 export default function colorReducer(state = initialState, action) {
@@ -21,13 +23,19 @@ export default function colorReducer(state = initialState, action) {
     case types.CHANGE_VAR_NAME: {
       return {
         ...state,
-        exportGroup: helpers.changeVarName(state.exportGroup, action.payload),
+        colors: {
+          ...state.colors,
+          exportGroup: helpers.changeVarName(state.colors.exportGroup, action.payload),
+        }
       };
     }
     case types.CREATE_EXPORT_GROUP: {
       return {
         ...state,
-        exportGroup: helpers.createExport(state.chosenColorsGroup),
+        colors: {
+          ...state.colors,
+          exportGroup: helpers.createExport(state.colors.chosenColorsGroup),
+        }
       };
     }
     case types.RANDOM_MODIFY_COLOR: {
@@ -64,41 +72,22 @@ export default function colorReducer(state = initialState, action) {
     case types.SELECT_ALL: {
       return {
         ...state,
-        chosenColorsGroup: helpers.selectAll(
-          action.payload,
-          state.luminosityGroup.slice(0),
-          state.mixedGroup.slice(0),
-          state.flatColors.slice(0),
-          state.materialColors.slice(0),
-          state.chosenColorsGroup.slice(0),
-        ),
         modifyColorIsAdded: false,
-        luminosityGroup: action.payload.map((item, index) => {
-          if (item.color === state.luminosityGroup[index].color) {
-            item.isClicked = true;
-            return item;
-          }
-          return state.luminosityGroup[index];
-        }),
-        mixedGroup: action.payload.map((item, index) => {
-          if (item.color === state.mixedGroup[index].color) {
-            item.isClicked = true;
-
-            return item;
-          }
-
-          return state.mixedGroup[index];
-        }),
+        colors: {
+          ...state.colors,
+          chosenColorsGroup: helpers.selectAll(
+            action.payload,
+            state.colors
+          ),
+          luminosityGroup: helpers.showClickedItems(action.payload, state.colors.luminosityGroup),
+          mixedGroup: helpers.showClickedItems(action.payload, state.colors.mixedGroup),
+        }
       };
     }
     case types.DELETE_COLOR: {
       return {
         ...state,
-        chosenColorsGroup: helpers.deleteColor(state.chosenColorsGroup.slice(0), action.payload),
-        luminosityGroup: helpers.deleteGroupColor(state.luminosityGroup.slice(0), action.payload),
-        mixedGroup: helpers.deleteGroupColor(state.mixedGroup.slice(0), action.payload),
-        flatColors: helpers.deleteGroupColor(state.flatColors.slice(0), action.payload),
-        materialColors: helpers.deleteGroupColor(state.materialColors.slice(0), action.payload),
+        colors: helpers.deleteColors(state.colors, action.payload),
         modifyColorIsAdded: false,
       };
     }
@@ -111,18 +100,9 @@ export default function colorReducer(state = initialState, action) {
     case types.ADD_COLOR: {
       return {
         ...state,
-        chosenColorsGroup: helpers.addColor(
-          state.chosenColorsGroup.slice(0),
-          state.luminosityGroup.slice(0),
-          state.mixedGroup.slice(0),
-          state.flatColors.slice(0),
-          state.materialColors.slice(0),
-          action.payload
-        ),
-        luminosityGroup: helpers.clickColorItem(state.luminosityGroup.slice(0), action.payload),
-        mixedGroup: helpers.clickColorItem(state.mixedGroup.slice(0), action.payload),
-        flatColors: helpers.clickColorItem(state.flatColors.slice(0), action.payload),
-        materialColors: helpers.clickColorItem(state.materialColors.slice(0), action.payload),
+
+        colors: helpers.addColor(state.colors, action.payload),
+
         modifyColorIsAdded: false,
       };
     }

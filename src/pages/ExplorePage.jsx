@@ -5,14 +5,14 @@ import * as colorActions from '../actions/colorActions';
 
 import './css/pages.scss';
 
-const ExplorePage = ({ deleteColor, chosenColorsGroup, flatColors, materialColors }) => {
+const ExplorePage = ({ deleteColor, colors }) => {
   const onClickDeleteColor = (color) => {
     if (color !== '#f5f5f5') {
       deleteColor(color);
     }
   };
 
-  const chosenColors = chosenColorsGroup.map((color, index) => (
+  const chosenColors = colors.chosenColorsGroup.map((color, index) => (
     <ColorItem
       key={`chosen-${index}`}
       choose color={color}
@@ -27,8 +27,8 @@ const ExplorePage = ({ deleteColor, chosenColorsGroup, flatColors, materialColor
           {chosenColors}
         </Panel>
         <div className="colors-wrap">
-          <Colors colors={flatColors} title={'Flat'} />
-          <Colors colors={materialColors} title={'Material'} />
+          <Colors colors={colors.flatColors} title={'Flat'} />
+          <Colors colors={colors.materialColors} title={'Material'} />
         </div>
       </div>
     </div>
@@ -36,14 +36,9 @@ const ExplorePage = ({ deleteColor, chosenColorsGroup, flatColors, materialColor
 };
 
 ExplorePage.propTypes = {
-  chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  deleteColor: PropTypes.func.isRequired,
-  flatColors: PropTypes.arrayOf(PropTypes.object),
-  materialColors: PropTypes.arrayOf(PropTypes.object),
+  colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
 };
 
 export default connect(state => ({
-  chosenColorsGroup: state.colorReducer.chosenColorsGroup,
-  flatColors: state.colorReducer.flatColors,
-  materialColors: state.colorReducer.materialColors,
+  colors: state.colorReducer.colors,
 }), colorActions)(ExplorePage);

@@ -4,7 +4,7 @@ import './export-block.scss';
 
 export default class ExportBlock extends Component {
   static propTypes = {
-    exportGroup: PropTypes.arrayOf(PropTypes.object).isRequired,
+    colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
   }
   state = {
     preproc: '$',
@@ -32,7 +32,7 @@ export default class ExportBlock extends Component {
     const sassBtnClass = this.state.sass ? 'export-block__btn export-block__btn--active' : 'export-block__btn';
     const lessBtnClass = this.state.less ? 'export-block__btn export-block__btn--active' : 'export-block__btn';
 
-    const listItems = this.props.exportGroup.map((item, index) => {
+    const listItems = this.props.colors.exportGroup.map((item, index) => {
       return (
         <li key={`listItem-${index}`} className="export-block__item">
           <span className="export-block__variable">{`${this.state.preproc}${item.variable}: `}</span>
@@ -41,7 +41,7 @@ export default class ExportBlock extends Component {
       );
     });
 
-    if (!this.props.exportGroup.length) { return null; }
+    if (!this.props.colors.exportGroup.length) { return null; }
 
     return (
       <div className="export-block">

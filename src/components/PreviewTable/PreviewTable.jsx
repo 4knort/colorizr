@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 
 import './preview-table.scss';
 
-const PreviewTable = ({ exportGroup, changeVarName }) => {
-  const tableItems = exportGroup.map((item, index) => {
+const PreviewTable = ({ colors, changeVarName }) => {
+  const tableItems = colors.exportGroup.map((item, index) => {
     return (
       <tr key={`tableItem-${index}`}>
         <td style={{ backgroundColor: item.color }} />
@@ -25,7 +25,7 @@ const PreviewTable = ({ exportGroup, changeVarName }) => {
         </tr>
       </thead>
       <tbody>
-        {!exportGroup.length && <tr><td colSpan="4">Select Colors for export first</td></tr>}
+        {!colors.exportGroup.length && <tr><td colSpan="4">Select Colors for export first</td></tr>}
         {tableItems}
       </tbody>
     </table>
@@ -33,7 +33,7 @@ const PreviewTable = ({ exportGroup, changeVarName }) => {
 };
 
 PreviewTable.propTypes = {
-  exportGroup: PropTypes.arrayOf(PropTypes.object).isRequired,
+  colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
   changeVarName: PropTypes.func.isRequired,
 };
 

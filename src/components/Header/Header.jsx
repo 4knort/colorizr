@@ -7,9 +7,9 @@ import './header.scss';
 const Header = () => (
   <header className="header clearfix">
     <div className="container clearfix">
-      <a href="" className="header__logo">
+      <IndexLink to={'/'} className="header__logo">
         <Image image="logoDark" />
-      </a>
+      </IndexLink>
       <ul className="header__nav">
         <li className="header__nav-item">
           <IndexLink to={'/'} activeClassName="header__nav-link--active" className="header__nav-link">Create</IndexLink>

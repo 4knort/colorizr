@@ -25,7 +25,7 @@ const IndexPage = (props) => {
     props.selectAll(colors);
   };
 
-  const chosenColors = props.chosenColorsGroup.map((color, index) => (
+  const chosenColors = props.colors.chosenColorsGroup.map((color, index) => (
     <ColorItem
       key={`chosen-${index}`}
       isChosenPanel
@@ -33,7 +33,8 @@ const IndexPage = (props) => {
       onClickAddColor={() => { onClickDeleteColor(color); }}
     />
   ));
-  const luminosityColors = props.luminosityGroup.map((item, index) => (
+  
+  const luminosityColors = props.colors.luminosityGroup.map((item, index) => (
     <ColorItem
       key={`luminosity-${index}`}
       isClicked={item.isClicked}
@@ -41,7 +42,7 @@ const IndexPage = (props) => {
       onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
     />
   ));
-  const mixedColors = props.mixedGroup.map((item, index) => (
+  const mixedColors = props.colors.mixedGroup.map((item, index) => (
     <ColorItem
       key={`mixed-${index}`}
       isClicked={item.isClicked}
@@ -57,10 +58,10 @@ const IndexPage = (props) => {
         <Panel isChosenPanel colorsBlockClass={'panel__colors panel__colors--choose'} title={'Select up to 10 colors'}>
           {chosenColors}
         </Panel>
-        <Panel onClick={selectAllColors} colors={props.luminosityGroup} title={'Darker and Lighter'}>
+        <Panel onClick={selectAllColors} colors={props.colors.luminosityGroup} title={'Darker and Lighter'}>
           {luminosityColors}
         </Panel>
-        <Panel onClick={selectAllColors} colors={props.mixedGroup} title={'Mixed with'} isColorPicker>
+        <Panel onClick={selectAllColors} colors={props.colors.mixedGroup} title={'Mixed with'} isColorPicker>
           <MixedGroup />
           {mixedColors}
         </Panel>
@@ -70,15 +71,10 @@ const IndexPage = (props) => {
 };
 
 IndexPage.propTypes = {
-  chosenColor: PropTypes.string.isRequired,
-  chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  luminosityGroup: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  mixedGroup: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
 };
 
 export default connect(state => ({
-  luminosityGroup: state.colorReducer.luminosityGroup,
-  mixedGroup: state.colorReducer.mixedGroup,
-  chosenColorsGroup: state.colorReducer.chosenColorsGroup,
+  colors: state.colorReducer.colors,
   chosenColor: state.colorReducer.chosenColor,
 }), colorActions)(IndexPage);

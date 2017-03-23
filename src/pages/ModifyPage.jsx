@@ -30,7 +30,7 @@ const ModifyPage = (props) => {
     props.getRandomModifyColor();
   };
 
-  const chosenColors = props.chosenColorsGroup.map((color, index) => (
+  const chosenColors = props.colors.chosenColorsGroup.map((color, index) => (
     <ColorItem
       key={`chosen-${index}`}
       choose color={color}
@@ -63,13 +63,11 @@ const ModifyPage = (props) => {
 };
 
 ModifyPage.propTypes = {
-  chosenColorsGroup: PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  modifyColor: PropTypes.string.isRequired,
-  modifyColorIsAdded: PropTypes.bool.isRequired,
+  colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
 };
 
 export default connect(state => ({
-  chosenColorsGroup: state.colorReducer.chosenColorsGroup,
+  colors: state.colorReducer.colors,
   modifyColor: state.colorReducer.modifyColor,
   modifyColorIsAdded: state.colorReducer.modifyColorIsAdded,
 }), colorActions)(ModifyPage);

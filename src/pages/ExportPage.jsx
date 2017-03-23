@@ -6,11 +6,11 @@ import * as colorActions from '../actions/colorActions';
 import './css/pages.scss';
 
 @connect(state => ({
-  exportGroup: state.colorReducer.exportGroup,
+  colors: state.colorReducer.colors,
 }), colorActions)
 export default class ExportPage extends Component {
   static propTypes = {
-    exportGroup: PropTypes.arrayOf(PropTypes.object).isRequired,
+    colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
     createExportGroup: PropTypes.func.isRequired,
     changeVarName: PropTypes.func.isRequired,
   }
@@ -27,8 +27,8 @@ export default class ExportPage extends Component {
       <div className="export-page">
         <div className="container">
           <h1 className="export-page__title">Customize and Export colors for Sass or Less</h1>
-          <PreviewTable changeVarName={(value, id) => { this.handleChange(value, id); }} exportGroup={this.props.exportGroup} />
-          <ExportBlock exportGroup={this.props.exportGroup} />
+          <PreviewTable changeVarName={(value, id) => { this.handleChange(value, id); }} colors={this.props.colors} />
+          <ExportBlock colors={this.props.colors} />
         </div>
       </div>
     );

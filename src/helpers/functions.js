@@ -83,18 +83,32 @@ export const deleteGroupColor = (array, color) => {
   return arr;
 };
 
-export const addColor = (array, luminosity, mixed, flat, material, color) => {
+export const addColor = (colors, color) => {
+  const obj = {
+    ...colors
+  }
+
+  for (let key in obj) {
+    obj[key] = clickColorItem(obj[key], color)
+  }
+
+  obj.chosenColorsGroup = addChosenColor(obj, color);
+
+  return obj;
+};
+
+const addChosenColor = (colors, color) => {
   const emptyColor = '#f5f5f5';
 
-  let arr = array.filter(item => {
+  let arr = colors.chosenColorsGroup.filter(item => {
     return item !== emptyColor;
   });
 
   if (arr.length >= 10) {
-    deleteGroupColor(luminosity, arr[0]);
-    deleteGroupColor(mixed, arr[0]);
-    deleteGroupColor(flat, arr[0]);
-    deleteGroupColor(material, arr[0]);
+    for (let key in colors) {
+      deleteGroupColor(colors[key],  arr[0])
+    }
+
     arr = arr.slice(1);
     arr.push(color);
   } else {
@@ -106,14 +120,14 @@ export const addColor = (array, luminosity, mixed, flat, material, color) => {
   }
 
   return arr;
-};
+}
 
-export const selectAll = (array, luminosity, mixed, flat, material, chosenGroup) => {
+export const selectAll = (array, colors) => {
   const arr = array.map((item, index) => {
-    deleteGroupColor(luminosity, chosenGroup[index]);
-    deleteGroupColor(mixed, chosenGroup[index]);
-    deleteGroupColor(flat, chosenGroup[index]);
-    deleteGroupColor(material, chosenGroup[index]);
+
+    for (let key in colors) {
+      deleteGroupColor(colors[key], colors.chosenColorsGroup[index])
+    }
 
     return item.color;
   });
@@ -171,4 +185,38 @@ export const changeVarName = (array, exportItem) => {
   });
 
   return arr;
+};
+
+export const showClickedItems = (clickedColors, arrayOfColors) => {
+  const arr = clickedColors.map((item, index) => {
+    if (item.color === arrayOfColors[index].color) {
+      item.isClicked = true;
+      return item;
+    }
+    return arrayOfColors[index];
+  });
+
+  return arr;
+};
+
+export const deleteColors = (obj, color) => {
+
+  const colors = {
+    ...obj
+  }
+
+  for (let key in colors) {
+    colors[key].map(item => {
+      if (item.color === color) {
+        item.isClicked = false;
+      }
+
+      return item;
+    });
+  }
+
+  colors.chosenColorsGroup = deleteColor(colors.chosenColorsGroup, color);
+
+  return colors;
+
 };
