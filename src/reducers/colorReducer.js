@@ -109,16 +109,22 @@ export default function colorReducer(state = initialState, action) {
     case types.CHOOSE_COLOR: {
       return {
         ...state,
+        colors: {
+          ...state.colors,
+          luminosityGroup: helpers.getGradient(action.payload.hex),
+          mixedGroup: helpers.getMixedGradient(state.mixedColor, action.payload.hex),
+        },
         chosenColor: action.payload.hex,
-        luminosityGroup: helpers.getGradient(action.payload.hex),
-        mixedGroup: helpers.getMixedGradient(state.mixedColor, action.payload.hex),
       };
     }
     case types.CHOOSE_MIXED_COLOR: {
       return {
         ...state,
         mixedColor: action.payload.hex,
-        mixedGroup: helpers.getMixedGradient(action.payload.hex, state.chosenColor),
+        colors: {
+          ...state.colors,
+          mixedGroup: helpers.getMixedGradient(action.payload.hex, state.chosenColor),
+        },
       };
     }
     default: {
