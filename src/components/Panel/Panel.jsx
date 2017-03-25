@@ -16,9 +16,11 @@ const Panel = (props) => {
   const colorsBlockClass = props.colorsBlockClass ? props.colorsBlockClass : 'panel__colors';
   const buttons = props.isChosenPanel 
     ? ''
-    : (<div className="panel__btns">
-        <button className={'panel__btn'} onClick={() => { selectAllColors(props.colors); }}>Select All</button>
-      </div>);
+    : (
+        <div className="panel__btns">
+          <button className={'panel__btn'} onClick={() => { selectAllColors(props.colors); }}>Select All</button>
+        </div>
+      );
 
   const colorPanel = props.isColorPicker 
     ? <span className="panel__color-block" style={{ backgroundColor: props.mixedColor }} onClick={handleClick} />

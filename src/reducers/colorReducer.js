@@ -100,9 +100,7 @@ export default function colorReducer(state = initialState, action) {
     case types.ADD_COLOR: {
       return {
         ...state,
-
         colors: helpers.addColor(state.colors, action.payload),
-
         modifyColorIsAdded: false,
       };
     }

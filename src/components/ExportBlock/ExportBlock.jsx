@@ -29,8 +29,12 @@ export default class ExportBlock extends Component {
   }
 
   render() {
-    const sassBtnClass = this.state.sass ? 'export-block__btn export-block__btn--active' : 'export-block__btn';
-    const lessBtnClass = this.state.less ? 'export-block__btn export-block__btn--active' : 'export-block__btn';
+    const sassBtnClass = this.state.sass 
+      ? 'export-block__btn export-block__btn--active' 
+      : 'export-block__btn';
+    const lessBtnClass = this.state.less 
+      ? 'export-block__btn export-block__btn--active' 
+      : 'export-block__btn';
 
     const listItems = this.props.colors.exportGroup.map((item, index) => {
       return (

@@ -26,15 +26,15 @@ export default class ColorItem extends Component {
     const classIcon = this.state.isClicked ? 'panel__color-icon panel__color-icon--active' : 'panel__color-icon panel__color-icon--hover';
 
     const item = this.props.color === '#f5f5f5'
-    ?
-      <div className={classPanel} style={{ backgroundColor: this.props.color }} />
-    :
-      (<div className={classPanel} style={{ backgroundColor: this.props.color, cursor: 'pointer' }} onClick={() => {
-        this.itemClick();
-        this.props.onClickAddColor(this.state.isClicked);
-      }}>
-        <span className={classIcon}>+</span>
-      </div>);
+    ? <div className={classPanel} style={{ backgroundColor: this.props.color }} />
+    : (
+        <div className={classPanel} style={{ backgroundColor: this.props.color, cursor: 'pointer' }} onClick={() => {
+          this.itemClick();
+          this.props.onClickAddColor(this.state.isClicked);
+        }}>
+          <span className={classIcon}>+</span>
+        </div>
+      );
 
     return item;
   }

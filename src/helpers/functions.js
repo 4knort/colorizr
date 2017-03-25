@@ -1,18 +1,27 @@
 import warna from 'warna';
 
-export const getGradient = (color) => {
-  const lighterColor = warna.lighten(color, 0.5).hex;
-  const gradient = new warna.Gradient(color, lighterColor);
-  const colors = gradient.getSlices(10, 'hex');
+const EMPTY_COLOR = '#f5f5f5';
+const MAX_COLORS = 10;
 
+const createArrayOfColors = (colors) => {
   const arr = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < MAX_COLORS; i++) {
     arr.push({
       color: colors[i],
       isClicked: false,
     });
   }
+
+  return arr;
+};
+
+export const getGradient = (color) => {
+  const lighterColor = warna.lighten(color, 0.5).hex;
+  const gradient = new warna.Gradient(color, lighterColor);
+  const colors = gradient.getSlices(MAX_COLORS, 'hex');
+
+  const arr = createArrayOfColors(colors);
 
   return arr;
 };
@@ -23,16 +32,9 @@ export const getMixedGradient = (color1, color2) => {
   const lighterColor = warna.lighten(color2, 0.01).hex;
 
   const gradient = new warna.Gradient(color1, lighterColor);
-  const colors = gradient.getSlices(10, 'hex');
+  const colors = gradient.getSlices(MAX_COLORS, 'hex');
 
-  const arr = [];
-
-  for (let i = 0; i < 10; i++) {
-    arr.push({
-      color: colors[i],
-      isClicked: false,
-    });
-  }
+  const arr = createArrayOfColors(colors);
 
   return arr;
 };
@@ -40,8 +42,8 @@ export const getMixedGradient = (color1, color2) => {
 export const getArrayEmptyColors = () => {
   const arr = [];
 
-  for (let i = 0; i < 10; i++) {
-    arr.push('#f5f5f5');
+  for (let i = 0; i < MAX_COLORS; i++) {
+    arr.push(EMPTY_COLOR);
   }
 
   return arr;
@@ -52,7 +54,7 @@ export const deleteColor = (array, color) => {
     return item !== color;
   });
 
-  arr.push('#f5f5f5');
+  arr.push(EMPTY_COLOR);
 
   return arr;
 };
@@ -98,13 +100,12 @@ export const addColor = (colors, color) => {
 };
 
 const addChosenColor = (colors, color) => {
-  const emptyColor = '#f5f5f5';
 
   let arr = colors.chosenColorsGroup.filter(item => {
-    return item !== emptyColor;
+    return item !== EMPTY_COLOR;
   });
 
-  if (arr.length >= 10) {
+  if (arr.length >= MAX_COLORS) {
     for (let key in colors) {
       deleteGroupColor(colors[key],  arr[0])
     }
@@ -115,8 +116,8 @@ const addChosenColor = (colors, color) => {
     arr.push(color);
   }
 
-  for (let i = arr.length; i < 10; i++) {
-    arr.push(emptyColor);
+  for (let i = arr.length; i < MAX_COLORS; i++) {
+    arr.push(EMPTY_COLOR);
   }
 
   return arr;
@@ -153,11 +154,10 @@ export const modify = (color, modifier, percent) => {
 };
 
 export const createExport = (array) => {
-  const defaultColor = '#f5f5f5';
   const arr = [];
 
   array.filter((item, index) => {
-    if (item !== defaultColor) {
+    if (item !== EMPTY_COLOR) {
       const color = warna.parse(item);
       const obj = {
         color: color.hex,
