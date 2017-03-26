@@ -63,9 +63,8 @@ export const clickColorItem = (array, color) => {
   const arr = array.map(item => {
     if (item.color === color) {
       item.isClicked = true;
-
-      return item;
     }
+
     return item;
   });
 
@@ -76,9 +75,8 @@ export const deleteGroupColor = (array, color) => {
   const arr = array.map(item => {
     if (item.color === color) {
       item.isClicked = false;
-
-      return item;
     }
+
     return item;
   });
 
@@ -177,8 +175,6 @@ export const changeVarName = (array, exportItem) => {
   const arr = array.map(item => {
     if (item.id === exportItem.id) {
       item.variable = exportItem.value;
-
-      return item;
     }
 
     return item;
