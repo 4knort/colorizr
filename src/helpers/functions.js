@@ -220,3 +220,9 @@ export const deleteColors = (obj, color) => {
   return colors;
 
 };
+
+export const getRandomColor = () => {
+  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+  return randomColor;
+};

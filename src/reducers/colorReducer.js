@@ -2,16 +2,19 @@ import * as types from 'constants/actionTypes';
 import * as helpers from '../helpers/functions';
 import { exploreColors } from '../helpers/exploreColors';
 
+const CHOSE_START_COLOR = '#000000';
+const MIXED_START_COLOR = '#FF0000';
+
 const initialState = {
   isColorPickerOpened: false,
-  chosenColor: '#000000',
-  mixedColor: '#ff0000',
-  modifyColor: '#ff00ff',
+  chosenColor: CHOSE_START_COLOR,
+  mixedColor: MIXED_START_COLOR,
+  modifyColor: '',
   modifyColorIsAdded: false,
   colors: {
     chosenColorsGroup: helpers.getArrayEmptyColors(),
-    luminosityGroup: helpers.getGradient('#000000'),
-    mixedGroup: helpers.getMixedGradient('#ff0000', '#000000'),
+    luminosityGroup: helpers.getGradient(CHOSE_START_COLOR),
+    mixedGroup: helpers.getMixedGradient(MIXED_START_COLOR, CHOSE_START_COLOR),
     flatColors: exploreColors.flat,
     materialColors: exploreColors.material,
     exportGroup: [],
@@ -41,7 +44,7 @@ export default function colorReducer(state = initialState, action) {
     case types.RANDOM_MODIFY_COLOR: {
       return {
         ...state,
-        modifyColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
+        modifyColor: helpers.getRandomColor(),
         modifyColorIsAdded: false,
       };
     }
