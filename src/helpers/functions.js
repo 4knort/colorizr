@@ -112,11 +112,12 @@ const addChosenColor = (colors, color) => {
     arr.push(color);
   } else {
     arr.push(color);
+    
+    for (let i = arr.length; i < MAX_COLORS; i++) {
+      arr.push(EMPTY_COLOR);
+    }
   }
 
-  for (let i = arr.length; i < MAX_COLORS; i++) {
-    arr.push(EMPTY_COLOR);
-  }
 
   return arr;
 }

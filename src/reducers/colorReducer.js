@@ -18,7 +18,7 @@ const initialState = {
     flatColors: exploreColors.flat,
     materialColors: exploreColors.material,
     exportGroup: [],
-  }
+  },
 };
 
 export default function colorReducer(state = initialState, action) {
@@ -29,7 +29,7 @@ export default function colorReducer(state = initialState, action) {
         colors: {
           ...state.colors,
           exportGroup: helpers.changeVarName(state.colors.exportGroup, action.payload),
-        }
+        },
       };
     }
     case types.CREATE_EXPORT_GROUP: {
@@ -38,7 +38,7 @@ export default function colorReducer(state = initialState, action) {
         colors: {
           ...state.colors,
           exportGroup: helpers.createExport(state.colors.chosenColorsGroup),
-        }
+        },
       };
     }
     case types.RANDOM_MODIFY_COLOR: {
@@ -84,7 +84,7 @@ export default function colorReducer(state = initialState, action) {
           ),
           luminosityGroup: helpers.showClickedItems(action.payload, state.colors.luminosityGroup),
           mixedGroup: helpers.showClickedItems(action.payload, state.colors.mixedGroup),
-        }
+        },
       };
     }
     case types.DELETE_COLOR: {

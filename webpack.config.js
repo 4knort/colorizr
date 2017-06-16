@@ -11,14 +11,14 @@ const pagesBuild = process.env.BUILD === 'pages';
 
 /*********************************** Loaders ***********************************/
 const loaders = [
-  { 
+  {
     test: /\.(js|jsx)$/,
     loader: 'babel',
     include: path.join(__dirname, 'src'),
     exclude: /node_modules/,
   },
 
-  { 
+  {
     test: /\.scss$/,
     loader: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap', 'sass-resources'].join('!'),
     include: path.join(__dirname, 'src'),
@@ -29,7 +29,7 @@ const loaders = [
     loaders: ['style', 'css', 'postcss'],
   },
 
-  { 
+  {
     test: /\.svg$/,
     loader: 'file',
     include: path.join(__dirname, 'src'),
