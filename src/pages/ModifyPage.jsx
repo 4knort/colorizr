@@ -50,11 +50,11 @@ const ModifyPage = (props) => {
           <ModifiedColor
             isAdded={props.modifyColorIsAdded}
             color={props.modifyColor}
-            onClickAddColor={(isAdded, color) => { onClickAddColor(isAdded, color); }}
-            getRandomModifyColor={() => { getRandomModify(); }}
+            onClickAddColor={onClickAddColor}
+            getRandomModifyColor={getRandomModify}
           />
           <ModifyInputs
-            changeColor={(modifier, percent) => { onChangeColor(modifier, percent); }}
+            changeColor={onChangeColor}
           />
         </div>
       </div>

@@ -20,14 +20,15 @@ export default class ExportPage extends Component {
   }
 
   handleChange = (value, id) => {
-    this.props.changeVarName(value, id)
+    this.props.changeVarName(value, id);
   }
+  
   render() {
     return (
       <div className="export-page">
         <div className="container">
           <h1 className="export-page__title">Customize and Export colors for Sass or Less</h1>
-          <PreviewTable changeVarName={(value, id) => { this.handleChange(value, id); }} colors={this.props.colors} />
+          <PreviewTable changeVarName={this.handleChange} colors={this.props.colors} />
           <ExportBlock colors={this.props.colors} />
         </div>
       </div>
