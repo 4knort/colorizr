@@ -9,8 +9,8 @@ const Panel = (props) => {
     props.toggleColorPicker();
   };
 
-  const selectAllColors = (colors) => {
-    props.onClick(colors);
+  const selectAllColors = () => {
+    props.onClick(props.colors);
   };
 
   const colorsBlockClass = props.colorsBlockClass ? props.colorsBlockClass : 'panel__colors';
@@ -18,7 +18,7 @@ const Panel = (props) => {
     ? ''
     : (
         <div className="panel__btns">
-          <button className={'panel__btn'} onClick={() => { selectAllColors(props.colors); }}>Select All</button>
+          <button className={'panel__btn'} onClick={selectAllColors}>Select All</button>
         </div>
       );
 

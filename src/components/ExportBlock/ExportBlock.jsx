@@ -28,12 +28,28 @@ export default class ExportBlock extends Component {
     }
   }
 
+  sassBtnClick = () => {
+    this.setState({
+      preproc: '$',
+      sass: true,
+      less: false,
+    });
+  }
+
+  lessBtnClick = () => {
+    this.setState({
+      preproc: '@',
+      sass: false,
+      less: true,
+    });
+  }
+  
   render() {
-    const sassBtnClass = this.state.sass 
-      ? 'export-block__btn export-block__btn--active' 
+    const sassBtnClass = this.state.sass
+      ? 'export-block__btn export-block__btn--active'
       : 'export-block__btn';
-    const lessBtnClass = this.state.less 
-      ? 'export-block__btn export-block__btn--active' 
+    const lessBtnClass = this.state.less
+      ? 'export-block__btn export-block__btn--active'
       : 'export-block__btn';
 
     const listItems = this.props.colors.exportGroup.map((item, index) => {
@@ -51,8 +67,8 @@ export default class ExportBlock extends Component {
       <div className="export-block">
         <h2 className="export-block__title">Export your code</h2>
         <div className="export-block__btns">
-          <button className={sassBtnClass} onClick={() => { this.handleClick('sass'); }}>Sass</button>
-          <button className={lessBtnClass} onClick={() => { this.handleClick('less'); }}>Less</button>
+          <button className={sassBtnClass} onClick={ this.sassBtnClick }>Sass</button>
+          <button className={lessBtnClass} onClick={ this.lessBtnClick }>Less</button>
         </div>
         <ul className="export-block__list">
           {listItems}

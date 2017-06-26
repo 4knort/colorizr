@@ -19,13 +19,15 @@ export default class ExploreColor extends Component {
     this.setState({ isClicked: !this.state.isClicked });
   }
 
+  addColorClickHandler = () => {
+    this.itemClick();
+    this.props.onClickAddColor(this.state.isClicked);
+  }
+
   render() {
     const activeClass = this.state.isClicked ? 'colors__item colors__item--active' : 'colors__item'
     return (
-      <div className={activeClass} onClick={() => {
-        this.itemClick();
-        this.props.onClickAddColor(this.state.isClicked);
-      }}>
+      <div className={activeClass} onClick={this.addColorClickHandler}>
         <div className="colors__item-example" style={{ backgroundColor: this.props.color }} />
         <p className="colors__item-value">{this.props.color}</p>
       </div>

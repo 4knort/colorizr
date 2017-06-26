@@ -45,16 +45,33 @@ export default class ModifyInputs extends Component {
       });
     }
   }
+  
+  darkBtnClciked = () => {
+    this.props.changeColor('darken', this.state.darkenInput);
+  }
+
+  lightBtnClciked = () => {
+    this.props.changeColor('lighten', this.state.lightenInput);
+  }
+
+  lightInputChange = (e) => {
+    this.onChange(e, 'lighten');
+  }
+
+  darkInputChange = (e) => {
+    this.onChange(e, 'darken');
+  }
+
 
   render() {
     return (
       <div className="modify-inputs">
         <div className="modify-inputs__modifiers">
-          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('darken', this.state.darkenInput)}}>Dark it!</button>
+          <button className="modify-inputs__button" onClick={this.darkBtnClciked}>Dark it!</button>
           <input
             type="text"
             value={this.state.darkenInput}
-            onChange={(e) => { this.onChange(e, 'darken'); }}
+            onChange={this.darkInputChange}
             onKeyDown={this.handleKeyDown}
             onBlur={this.onBlur}
             className="modify-inputs__input"
@@ -62,11 +79,11 @@ export default class ModifyInputs extends Component {
           <span className="modify-inputs__percent">%</span>
         </div>
         <div className="modify-inputs__modifiers">
-          <button className="modify-inputs__button" onClick={() => {this.props.changeColor('lighten', this.state.lightenInput)}}>Light it!</button>
+          <button className="modify-inputs__button" onClick={this.lightBtnClciked}>Light it!</button>
           <input
             type="text"
             value={this.state.lightenInput}
-            onChange={(e) => { this.onChange(e, 'lighten'); }}
+            onChange={this.lightInputChange}
             onKeyDown={this.handleKeyDown}
             onBlur={this.onBlur}
             className="modify-inputs__input"
