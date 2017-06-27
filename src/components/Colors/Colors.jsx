@@ -16,7 +16,7 @@ const Colors = ({ colors, title, addColor, deleteColor }) => {
 
   const colorItems = colors.map((item, index) => (
     <ExploreColor
-      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
+      onClickAddColor={onClickAddColor}
       color={item.color}
       key={`exploreColor ${index}`}
       isClicked={item.isClicked}

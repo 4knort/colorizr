@@ -21,7 +21,7 @@ export default class ExploreColor extends Component {
 
   addColorClickHandler = () => {
     this.itemClick();
-    this.props.onClickAddColor(this.state.isClicked);
+    this.props.onClickAddColor(this.state.isClicked, this.props.color);
   }
 
   render() {

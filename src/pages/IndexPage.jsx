@@ -7,6 +7,8 @@ import * as colorActions from '../actions/colorActions';
 import './css/pages.scss';
 
 const IndexPage = (props) => {
+  const emptyColor = '#f5f5f5';
+
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
       props.addColor(color);
@@ -16,7 +18,7 @@ const IndexPage = (props) => {
   };
 
   const onClickDeleteColor = (color) => {
-    if (color !== '#f5f5f5') {
+    if (color !== emptyColor) {
       props.deleteColor(color);
     }
   };
@@ -30,7 +32,7 @@ const IndexPage = (props) => {
       key={`chosen-${index}`}
       isChosenPanel
       color={color}
-      onClickAddColor={() => { onClickDeleteColor(color); }}
+      onClickDeleteColor={onClickDeleteColor}
     />
   ));
   
@@ -39,7 +41,7 @@ const IndexPage = (props) => {
       key={`luminosity-${index}`}
       isClicked={item.isClicked}
       color={item.color}
-      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
+      onClickAddColor={onClickAddColor}
     />
   ));
   const mixedColors = props.colors.mixedGroup.map((item, index) => (
@@ -47,7 +49,7 @@ const IndexPage = (props) => {
       key={`mixed-${index}`}
       isClicked={item.isClicked}
       color={item.color}
-      onClickAddColor={(isAdded) => { onClickAddColor(isAdded, item.color); }}
+      onClickAddColor={onClickAddColor}
     />
   ));
 

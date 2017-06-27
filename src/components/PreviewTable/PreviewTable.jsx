@@ -9,7 +9,9 @@ const PreviewTable = ({ colors, changeVarName }) => {
         <td style={{ backgroundColor: item.color }} />
         <td>{item.color}</td>
         <td>rgb({item.rgb.red}, {item.rgb.green}, {item.rgb.blue})</td>
-        <td><input className="preview-table__input" type="text" onChange={(e) => { changeVarName(e.target.value, item.id); }} value={item.variable} /></td>
+        <td>
+          <input className="preview-table__input" type="text" onChange={(e) => { changeVarName(e.target.value, item.id); }} value={item.variable} />
+        </td>
       </tr>
     );
   });

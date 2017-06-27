@@ -7,6 +7,8 @@ import * as colorActions from '../actions/colorActions';
 import './css/pages.scss';
 
 const ModifyPage = (props) => {
+  const emptyColor = '#f5f5f5';
+  
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
       props.addColor(color);
@@ -17,7 +19,7 @@ const ModifyPage = (props) => {
   };
 
   const onClickDeleteColor = (color) => {
-    if (color !== '#f5f5f5') {
+    if (color !== emptyColor) {
       props.deleteColor(color);
     }
   };
@@ -35,7 +37,7 @@ const ModifyPage = (props) => {
       key={`chosen-${index}`}
       choose color={color}
       isChosenPanel
-      onClickAddColor={() => { onClickDeleteColor(color); }}
+      onClickDeleteColor={onClickDeleteColor}
     />
   ));
 

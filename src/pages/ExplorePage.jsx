@@ -6,8 +6,10 @@ import * as colorActions from '../actions/colorActions';
 import './css/pages.scss';
 
 const ExplorePage = ({ deleteColor, colors }) => {
+  const emptyColor = '#f5f5f5';
+  
   const onClickDeleteColor = (color) => {
-    if (color !== '#f5f5f5') {
+    if (color !== emptyColor) {
       deleteColor(color);
     }
   };
@@ -15,9 +17,10 @@ const ExplorePage = ({ deleteColor, colors }) => {
   const chosenColors = colors.chosenColorsGroup.map((color, index) => (
     <ColorItem
       key={`chosen-${index}`}
-      choose color={color}
+      choose 
+      color={color}
       isChosenPanel
-      onClickAddColor={() => { onClickDeleteColor(color); }}
+      onClickDeleteColor={onClickDeleteColor}
     />
   ));
   return (
