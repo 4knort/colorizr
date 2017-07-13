@@ -12,3 +12,6 @@ export ModifiedColor from './ModifiedColor/ModifiedColor';
 export PreviewTable from './PreviewTable/PreviewTable';
 export ExportBlock from './ExportBlock/ExportBlock';
 export Image from './Image/Image';
+export LoginForm from './Form/LoginForm';
+export SignupForm from './Form/SignupForm';
+export AuthButtons from './AuthButtons/AuthButtons';

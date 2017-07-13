@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
-import { Image } from 'components';
+import { Image, AuthButtons } from 'components';
 
 import './header.scss';
 
@@ -24,6 +24,7 @@ const Header = () => (
           <Link to={'/export'} activeClassName="header__nav-link--active" className="header__nav-link">Export</Link>
         </li>
       </ul>
+      <AuthButtons />
     </div>
   </header>
 );

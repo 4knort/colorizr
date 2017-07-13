@@ -29,14 +29,14 @@ export default class ColorItem extends Component {
   deleteColorClickHandler = () => {
     this.props.onClickDeleteColor(this.props.color);
   }
-  
+
   render() {
-    const emptyColor = '#f5f5f5'
+    const emptyColor = '#f5f5f5';
     const classPanel = this.props.isChosenPanel ? 'panel__color-item panel__color-item--choose' : 'panel__color-item';
     const classIcon = this.state.isClicked ? 'panel__color-icon panel__color-icon--active' : 'panel__color-icon panel__color-icon--hover';
-    const icon = this.props.color === emptyColor ? '' : <span className={classIcon}>+</span> 
+    const icon = this.props.color === emptyColor ? '' : <span className={classIcon}>+</span>
 
-    const item = this.props.isChosenPanel 
+    const item = this.props.isChosenPanel
     ? (
         <div className={classPanel} style={{ backgroundColor: this.props.color }} onClick={this.deleteColorClickHandler}>
           {icon}

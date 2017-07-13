@@ -11,9 +11,11 @@
     width: 180px;
     display: inline-block;
     vertical-align: baseline;
+    float: left;
+    margin-right: 50px;
   }
   &__nav {
-    float: right;
+    float: left;
     list-style-type: none;
     margin: 0;
     padding: 0;
