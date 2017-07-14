@@ -50,6 +50,7 @@ export function changeColor(modifier, percent) {
     },
   };
 }
+
 export function chooseModifiedColor(color) {
   return {
     type: types.CHOOSE_MODIFIED_COLOR,
@@ -75,9 +76,10 @@ export function createExportGroup() {
     type: types.CREATE_EXPORT_GROUP,
   };
 }
+
 export function changeVarName(value, id) {
   return {
     type: types.CHANGE_VAR_NAME,
-    payload: {value, id},
+    payload: { value, id },
   };
 }

@@ -52,16 +52,16 @@ h6{
 }
 //place holder style
 ::-webkit-input-placeholder{
-  color: #426b95;
+  color: #ccc;
 }
 ::-moz-placeholder{
-  color: #426b95;
+  color: #ccc;
 }/* Firefox 19+ */
 :-moz-placeholder{
-  color: #426b95;
+  color: #ccc;
 }/* Firefox 18- */
 :-ms-input-placeholder{
-  color: #426b95;
+  color: #ccc;
 }
 .show{
   display: block !important;
@@ -85,4 +85,23 @@ textarea{
   content:"";
   display:block;
   clear:both;
+}
+
+
+
+
+form {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.input-field {
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 10px 80px;
+  border: 1px solid;
+  margin-bottom: 10px;
+  cursor: pointer;
 }

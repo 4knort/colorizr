@@ -52,7 +52,6 @@ const IndexPage = (props) => {
       onClickAddColor={onClickAddColor}
     />
   ));
-
   return (
     <div className="index-page" style={{ backgroundColor: props.chosenColor }}>
       <div className="container">
@@ -79,4 +78,5 @@ IndexPage.propTypes = {
 export default connect(state => ({
   colors: state.colorReducer.colors,
   chosenColor: state.colorReducer.chosenColor,
+  user: state.userReducer.user,
 }), colorActions)(IndexPage);
