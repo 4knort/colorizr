@@ -6,7 +6,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --colors",
     "pages:build": "npm run clean && cross-env NODE_ENV=production BUILD=pages webpack --progress --colors",
     "pages:deploy": "npm run pages:build && gh-pages -d public",
-    "clean": "rimraf public"
+    "clean": "rimraf public" 
   },
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
