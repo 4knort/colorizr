@@ -1,0 +1,20 @@
+.user-prof {
+  position: relative;
+}
+.user-panel.opened {
+  display: block;
+}
+.user-panel {
+  position: absolute;
+  display: none;
+  top: 25px;
+  left: -15px;
+  background-color: #FFF;
+}
+
+.link {
+  display: block;
+}
+.hz {
+  cursor: pointer;
+}

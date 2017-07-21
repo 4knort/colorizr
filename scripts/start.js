@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const app = require('../server/server');
 
 
-const PORT = 3002;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, 'localhost', err => {
   err && console.error(err);
