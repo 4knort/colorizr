@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './form.scss';
+
 class AuthForm extends Component {
   state = {
     email: '',
@@ -16,9 +18,9 @@ class AuthForm extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
-          {this.props.errors}
-          <form onSubmit={this.onSubmit} action="" className="col s4">
+        <div>
+          <div className="errors">{this.props.errors}</div>
+          <form onSubmit={this.onSubmit} action="">
             <div className="input-field">
               <input
                 placeholder="name"
@@ -35,7 +37,7 @@ class AuthForm extends Component {
                 onChange={e => this.setState({ password: e.target.value })}
               />
             </div>
-            <button className="btn">submit</button>
+            <button className="submit-btn">submit</button>
           </form>
         </div>
       </div>

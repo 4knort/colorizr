@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import * as userActions from '../../actions/userActions';
 import logout from '../../mutations/logout';
 
-import './user-profile.css';
+import './user-profile.scss';
 
 class UserIcon extends Component {
   state = {
@@ -24,13 +24,15 @@ class UserIcon extends Component {
   }
 
   render() {
-    const panelClass = this.state.panelOpened ? 'user-panel opened' : 'user-panel';
+    console.log(this.props.user)
+    const panelClass = this.state.panelOpened ? 'user-profile__panel opened' : 'user-profile__panel';
+    const iconClass = this.state.panelOpened ? 'user-profile__icon user-profile__icon--active' : 'user-profile__icon';
     return (
-      <div className="user-prof">
-        <span onClick={this.onUserClick} className="hz">User</span>
+      <div className="user-profile">
+        <span onClick={this.onUserClick} className={iconClass}>{this.props.user.email}</span>
         <div className={panelClass}>
-          <Link className="link" to="/user-profile">Profile</Link>
-          <a className="link"  href="#" onClick={this.onLogoutClick}>Logout</a>  
+          <Link className="user-profile__link" to="/favorites">Favorites</Link> 
+          <a className="user-profile__link"  href="#" onClick={this.onLogoutClick}>Logout</a>   
         </div>
       </div>
     );
@@ -39,5 +41,7 @@ class UserIcon extends Component {
 
 export default compose(
   graphql(logout),
-  connect(null, userActions)
+  connect(state => ({
+    user: state.userReducer.user,
+  }), userActions)
 )(UserIcon);

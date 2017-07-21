@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 import { UserIcon } from 'components';
-import './authbuttons.css';
+import './authbuttons.scss';
 
 const AuthButtons = ({ user }) => {
 
@@ -15,8 +15,8 @@ const AuthButtons = ({ user }) => {
     ) 
   : (
       <div >
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
+        <Link activeClassName="auth-btn--active" className="auth-btn" to="/signup">Signup</Link>
+        <Link activeClassName="auth-btn--active" className="auth-btn" to="/login">Login</Link>
       </div>
     );
   return (

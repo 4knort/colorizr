@@ -6,6 +6,8 @@ import * as userActions from '../../actions/userActions';
 import AuthForm from './AuthForm';
 import signup from '../../mutations/Signup';
 
+import './form.scss';
+
 class SignupForm extends Component {
   state = {
     errors: null,
@@ -33,7 +35,7 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form">
         <h3>Signup</h3>
         <AuthForm errors={this.state.errors} onSubmit={this.onSubmit} />
       </div>
