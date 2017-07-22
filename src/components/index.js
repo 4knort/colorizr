@@ -16,4 +16,5 @@ export LoginForm from './Form/LoginForm';
 export SignupForm from './Form/SignupForm';
 export AuthButtons from './AuthButtons/AuthButtons';
 export UserIcon from './UserIcon/UserIcon';
+export Favourites from './Favourites/Favourites';
 

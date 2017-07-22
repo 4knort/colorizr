@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import { IndexPage, ExplorePage, ModifyPage, ExportPage } from 'pages';
-import { App, SignupForm, LoginForm } from 'components';
+import { App, SignupForm, LoginForm, Favourites } from 'components';
 
 const AppRouter = ({ history }) => (
   <Router history={history}>
@@ -12,6 +12,7 @@ const AppRouter = ({ history }) => (
       <Route path="/export" component={ExportPage} />
       <Route path="/signup" component={SignupForm} />
       <Route path="/login" component={LoginForm} />
+      <Route path="/favourites" component={Favourites} />
     </Route>
   </Router>
 );
