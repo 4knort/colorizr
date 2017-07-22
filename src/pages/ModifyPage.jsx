@@ -32,12 +32,23 @@ const ModifyPage = (props) => {
     props.getRandomModifyColor();
   };
 
-  const chosenColors = props.colors.chosenColorsGroup.map((color, index) => (
+  const onClickFavourite = (color, isFavourite) => {
+    if(isFavourite) {
+      props.deleteFavourite(color);      
+    } else {
+      props.addFavourite(color);
+    }
+  };
+
+  const chosenColors = props.colors.chosenColorsGroup.map((item, index) => (
     <ColorItem
       key={`chosen-${index}`}
-      choose color={color}
       isChosenPanel
+      color={item.color}
+      isFavourite={item.isFavourite}
       onClickDeleteColor={onClickDeleteColor}
+      onClickFavourite={onClickFavourite}
+      user={props.user}
     />
   ));
 
@@ -72,4 +83,5 @@ export default connect(state => ({
   colors: state.colorReducer.colors,
   modifyColor: state.colorReducer.modifyColor,
   modifyColorIsAdded: state.colorReducer.modifyColorIsAdded,
+  user: state.userReducer.user,
 }), colorActions)(ModifyPage);

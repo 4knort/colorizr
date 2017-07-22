@@ -5,7 +5,7 @@ import * as colorActions from '../actions/colorActions';
 
 import './css/pages.scss';
 
-const ExplorePage = ({ deleteColor, colors }) => {
+const ExplorePage = ({ deleteColor, colors, user, deleteFavourite, addFavourite }) => {
   const emptyColor = '#f5f5f5';
   
   const onClickDeleteColor = (color) => {
@@ -13,14 +13,23 @@ const ExplorePage = ({ deleteColor, colors }) => {
       deleteColor(color);
     }
   };
+  const onClickFavourite = (color, isFavourite) => {
+    if(isFavourite) {
+      deleteFavourite(color);      
+    } else {
+      addFavourite(color);
+    }
+  };
 
-  const chosenColors = colors.chosenColorsGroup.map((color, index) => (
+  const chosenColors = colors.chosenColorsGroup.map((item, index) => (
     <ColorItem
       key={`chosen-${index}`}
-      choose 
-      color={color}
       isChosenPanel
+      color={item.color}
+      isFavourite={item.isFavourite}
       onClickDeleteColor={onClickDeleteColor}
+      onClickFavourite={onClickFavourite}
+      user={user}
     />
   ));
   return (
@@ -44,4 +53,5 @@ ExplorePage.propTypes = {
 
 export default connect(state => ({
   colors: state.colorReducer.colors,
+  user: state.userReducer.user,
 }), colorActions)(ExplorePage);

@@ -43,6 +43,7 @@ const IndexPage = (props) => {
       isFavourite={item.isFavourite}
       onClickDeleteColor={onClickDeleteColor}
       onClickFavourite={onClickFavourite}
+      user={props.user}
     />
   ));
   

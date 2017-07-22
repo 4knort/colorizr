@@ -46,7 +46,7 @@ export default class ColorItem extends Component {
       ? <Image image="LikeIconActive" />
       : <Image image="LikeIcon" />;
 
-    const iconFavourite = this.props.color === emptyColor ? '' : iconFavouriteStyle;
+    const iconFavourite = (this.props.color !== emptyColor && this.props.user) ? iconFavouriteStyle : '';
 
     const item = this.props.isChosenPanel
     ? (

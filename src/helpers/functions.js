@@ -73,19 +73,6 @@ export const clickColorItem = (array, color) => {
   return arr;
 };
 
-export const deleteGroupColor = (array, color) => {
-  const arr = array.map(item => {
-    if (item.color === color) {
-      item.isClicked = false;
-      item.isFavourite = false;
-    }
-
-    return item;
-  });
-
-  return arr;
-};
-
 export const addFavourite = (array, color) => {
   const arr = array.map(item => {
     if(item.color === color) {
@@ -156,7 +143,19 @@ export const selectAll = (array, colors) => {
       deleteGroupColor(colors[key], colors.chosenColorsGroup[index])
     }
 
-    return item.color;
+    return item;
+  });
+
+  return arr;
+};
+
+export const deleteGroupColor = (array, obj) => {
+  const arr = array.map(item => {
+    if (item.color === obj.color) {
+      item.isClicked = false;
+    }
+
+    return item;
   });
 
   return arr;
@@ -183,8 +182,8 @@ export const createExport = (array) => {
   const arr = [];
 
   array.filter((item, index) => {
-    if (item !== EMPTY_COLOR) {
-      const color = warna.parse(item);
+    if (item.color !== EMPTY_COLOR) {
+      const color = warna.parse(item.color);
       const obj = {
         color: color.hex,
         rgb: color.rgb,
