@@ -12,4 +12,6 @@ export const CREATE_EXPORT_GROUP = 'CREATE_EXPORT_GROUP';
 export const CHANGE_VAR_NAME = 'CHANGE_VAR_NAME';
 export const ADD_USER = 'ADD_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const ADD_FAVOURITE = 'ADD_FAVOURITE';
+export const DELETE_FAVOURITE = 'DELETE_FAVOURITE';
 

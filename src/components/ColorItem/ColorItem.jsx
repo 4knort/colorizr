@@ -4,18 +4,21 @@ import { Image } from 'components';
 export default class ColorItem extends Component {
   static propTypes = {
     onClickAddColor: PropTypes.func.isRequired,
+    onClickFavourite: PropTypes.func,
+    onClickDeleteColor: PropTypes.func,
     color: PropTypes.string.isRequired,
     isClicked: PropTypes.bool,
+    isFavourite: PropTypes.bool,
     isChosenPanel: PropTypes.bool,
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ isClicked: nextProps.isClicked });
+    this.setState({ isClicked: nextProps.isClicked, isFavourite: nextProps.isFavourite });
   }
 
   state = {
     isClicked: this.props.isClicked,
-    isFavourite: true,
+    isFavourite: this.props.isFavourite,
   }
 
   itemClick = () => {
@@ -31,14 +34,19 @@ export default class ColorItem extends Component {
     this.props.onClickDeleteColor(this.props.color);
   }
 
+  clickFavourite = () => {
+    this.props.onClickFavourite(this.props.color, this.state.isFavourite);
+  }
   render() {
-    const emptyColor = '#f5f5f5'; 
+    const emptyColor = '#f5f5f5';
     const classPanel = this.props.isChosenPanel ? 'panel__color-item panel__color-item--choose' : 'panel__color-item';
     const classIcon = this.state.isClicked ? 'panel__color-icon panel__color-icon--active' : 'panel__color-icon panel__color-icon--hover';
-    const icon = this.props.color === emptyColor ? '' : <span className={classIcon}>+</span>
-    const iconFavourite = this.state.isFavourite
-      ? <Image image="LikeIcon" />
-      : <Image image="LikeIconActive" />;
+    const icon = this.props.color === emptyColor ? '' : <span className={classIcon}>+</span>;
+    const iconFavouriteStyle = this.state.isFavourite
+      ? <Image image="LikeIconActive" />
+      : <Image image="LikeIcon" />;
+
+    const iconFavourite = this.props.color === emptyColor ? '' : iconFavouriteStyle;
 
     const item = this.props.isChosenPanel
     ? (
@@ -47,7 +55,7 @@ export default class ColorItem extends Component {
             {icon}   
           </div>
           <div style={{ display: 'block', padding: '10px', position: 'relative' }}>
-            <span className="panel__color-favourite" >{iconFavourite}</span>
+            <span className="panel__color-favourite" onClick={this.clickFavourite} >{iconFavourite}</span>
             <span className="panel__color-favourite-tooltip">Add to favourite</span>
           </div>
        </div>

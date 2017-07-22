@@ -6,6 +6,7 @@ export function addUser(user) {
     payload: user,
   };
 }
+
 export function logoutUser() {
   return {
     type: types.LOGOUT_USER,

@@ -7,6 +7,20 @@ export function chooseColor(color) {
   };
 }
 
+export function addFavourite(color) {
+  return {
+    type: types.ADD_FAVOURITE,
+    payload: color,
+  };
+}
+
+export function deleteFavourite(color) {
+  return {
+    type: types.DELETE_FAVOURITE,
+    payload: color,
+  };
+}
+
 export function chooseMixedColor(color) {
   return {
     type: types.CHOOSE_MIXED_COLOR,

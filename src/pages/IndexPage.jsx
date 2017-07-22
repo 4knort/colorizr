@@ -23,16 +23,26 @@ const IndexPage = (props) => {
     }
   };
 
+  const onClickFavourite = (color, isFavourite) => {
+    if(isFavourite) {
+      props.deleteFavourite(color);      
+    } else {
+      props.addFavourite(color);
+    }
+  };
+
   const selectAllColors = (colors) => {
     props.selectAll(colors);
   };
 
-  const chosenColors = props.colors.chosenColorsGroup.map((color, index) => (
+  const chosenColors = props.colors.chosenColorsGroup.map((item, index) => (
     <ColorItem
       key={`chosen-${index}`}
       isChosenPanel
-      color={color}
+      color={item.color}
+      isFavourite={item.isFavourite}
       onClickDeleteColor={onClickDeleteColor}
+      onClickFavourite={onClickFavourite}
     />
   ));
   

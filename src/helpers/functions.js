@@ -43,7 +43,7 @@ export const getArrayEmptyColors = () => {
   const arr = [];
 
   for (let i = 0; i < MAX_COLORS; i++) {
-    arr.push(EMPTY_COLOR);
+    arr.push({color: EMPTY_COLOR, isFavourite: false});
   }
 
   return arr;
@@ -51,10 +51,12 @@ export const getArrayEmptyColors = () => {
 
 export const deleteColor = (array, color) => {
   const arr = array.filter(item => {
-    return item !== color;
+    if (item.color !== color) {
+      return item;
+    }
   });
 
-  arr.push(EMPTY_COLOR);
+  arr.push({color: EMPTY_COLOR, isFavourite: false});
 
   return arr;
 };
@@ -75,6 +77,31 @@ export const deleteGroupColor = (array, color) => {
   const arr = array.map(item => {
     if (item.color === color) {
       item.isClicked = false;
+      item.isFavourite = false;
+    }
+
+    return item;
+  });
+
+  return arr;
+};
+
+export const addFavourite = (array, color) => {
+  const arr = array.map(item => {
+    if(item.color === color) {
+      item.isFavourite = true;
+    }
+
+    return item;
+  });
+
+  return arr;
+};
+
+export const deleteFavourite = (array, color) => {
+  const arr = array.map(item => {
+    if(item.color === color) {
+      item.isFavourite = false;
     }
 
     return item;
@@ -100,21 +127,21 @@ export const addColor = (colors, color) => {
 const addChosenColor = (colors, color) => {
 
   let arr = colors.chosenColorsGroup.filter(item => {
-    return item !== EMPTY_COLOR;
+    return item.color !== EMPTY_COLOR;
   });
 
   if (arr.length >= MAX_COLORS) {
     for (let key in colors) {
-      deleteGroupColor(colors[key],  arr[0])
+      deleteGroupColor(colors[key],  arr[0].color)
     }
 
     arr = arr.slice(1);
-    arr.push(color);
+    arr.push({ color, isFavourite: false });
   } else {
-    arr.push(color);
+    arr.push({ color, isFavourite: false });
     
     for (let i = arr.length; i < MAX_COLORS; i++) {
-      arr.push(EMPTY_COLOR);
+      arr.push({color: EMPTY_COLOR, isFavourite: false});
     }
   }
 
@@ -206,6 +233,7 @@ export const deleteColors = (obj, color) => {
     colors[key].map(item => {
       if (item.color === color) {
         item.isClicked = false;
+        item.isFavourite = false;
       }
 
       return item;
