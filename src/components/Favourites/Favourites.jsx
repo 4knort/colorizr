@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 import FavouritesTable from './FavouritesTable';
 
 class Favourites extends Component {
-  componentWillUpdate(nextProps) {
-    this.setState({user: nextProps.user})
-  }
-
   state = {
     user: this.props.user,
   }
+
   render() {
     if (this.props.user) {
       const colors = this.state.user.favourites.map(item => (item.content));

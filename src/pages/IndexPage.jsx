@@ -3,14 +3,15 @@ import { Panel, ColorItem } from 'components';
 import { LuminosityGroup, MixedGroup } from 'containers';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
-import { bindActionCreators } from 'redux';
 import addColorToFavourite from '../mutations/addColorToFavourite';
 import currentUser from '../queries/CurrentUser';
 import * as colorActions from '../actions/colorActions';
+import * as userActions from '../actions/userActions';
 
 import './css/pages.scss';
 
 const IndexPage = (props) => {
+  let modalOpen = true;
   const emptyColor = '#f5f5f5';
 
   const onClickAddColor = (isAdded, color) => {
@@ -40,7 +41,6 @@ const IndexPage = (props) => {
       })
       .then(res => {
         props.addUser(res.data.addFavouriteToUser);
-        // console.log(res)
     });
     }
   };
@@ -77,6 +77,7 @@ const IndexPage = (props) => {
       onClickAddColor={onClickAddColor}
     />
   ));
+
   return (
     <div className="index-page" style={{ backgroundColor: props.chosenColor }}>
       <div className="container">
@@ -106,5 +107,5 @@ export default compose(
     colors: state.colorReducer.colors,
     chosenColor: state.colorReducer.chosenColor,
     user: state.userReducer.user,
-  }), colorActions)
+  }), {...colorActions, ...userActions})
 )(IndexPage);

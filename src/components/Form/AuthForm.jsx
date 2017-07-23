@@ -23,8 +23,8 @@ class AuthForm extends Component {
           <form onSubmit={this.onSubmit} action="">
             <div className="input-field">
               <input
-                placeholder="name"
-                type="text"
+                placeholder="email"
+                type="email"
                 value={this.state.email}
                 onChange={e => this.setState({ email: e.target.value })}
               />

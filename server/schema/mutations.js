@@ -1,6 +1,7 @@
 const graphql = require('graphql');
 const mongoose = require('mongoose');
 const User = mongoose.model('user');
+const Favourite = mongoose.model('favourite');
 
 const {
   GraphQLObjectType,
@@ -9,6 +10,7 @@ const {
 
 } = graphql;
 const UserType = require('./types/user_type');
+const FavouriteType = require('./types/favourite_type');
 const AuthService = require('../services/auth');
 
 const mutation = new GraphQLObjectType({

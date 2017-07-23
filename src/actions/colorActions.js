@@ -7,13 +7,6 @@ export function chooseColor(color) {
   };
 }
 
-export function addUser(user) {
-  return {
-    type: types.ADD_USER,
-    payload: user,
-  };
-}
-
 export function addFavourite(color) {
   return {
     type: types.ADD_FAVOURITE,
