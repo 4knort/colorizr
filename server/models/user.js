@@ -8,7 +8,29 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   email: String,
   password: String,
+  favourites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'favourite',
+  }],
 });
+
+UserSchema.statics.addColor = function(id, content) {
+  const Favourite = mongoose.model('favourite');
+
+  return this.findById(id)
+    .then(user => {
+      const favourite = new Favourite({ content, user });
+      user.favourites.push(favourite);
+      return Promise.all([favourite.save(), user.save()])
+        .then(([favourite, user]) => user);
+    });
+};
+
+UserSchema.statics.findColor = function(id) {
+  return this.findById(id)
+    .populate('favourites')
+    .then(user => user.favourites);
+}
 
 // The user's password is never saved in plain text.  Prior to saving the
 // user model, we 'salt' and 'hash' the users password.  This is a one way

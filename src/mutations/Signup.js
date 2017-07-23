@@ -5,6 +5,10 @@ export default gql `
     signup(email: $email, password: $password) {
       id
       email
+      favourites {
+        id
+        content
+      }
     }
   }
 `;

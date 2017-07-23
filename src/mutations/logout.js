@@ -5,6 +5,10 @@ export default gql `
     logout {
       id
       email
+      favourites {
+        id
+        content
+      }
     }
   }
 `;

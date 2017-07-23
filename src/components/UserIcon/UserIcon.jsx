@@ -24,11 +24,14 @@ class UserIcon extends Component {
   }
 
   render() {
+    const userNameLength = this.props.user.email.indexOf('@');
+    const userName = this.props.user.email.slice(0, userNameLength);
+
     const panelClass = this.state.panelOpened ? 'user-profile__panel opened' : 'user-profile__panel';
     const iconClass = this.state.panelOpened ? 'user-profile__icon user-profile__icon--active' : 'user-profile__icon';
     return (
       <div className="user-profile">
-        <span onClick={this.onUserClick} className={iconClass}>{this.props.user.email}</span>
+        <span onClick={this.onUserClick} className={iconClass}>{userName}</span>
         <div className={panelClass}>
           <Link className="user-profile__link" to="/favourites">Favourites</Link> 
           <a className="user-profile__link"  href="#" onClick={this.onLogoutClick}>Logout</a>   

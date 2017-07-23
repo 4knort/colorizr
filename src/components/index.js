@@ -17,4 +17,6 @@ export SignupForm from './Form/SignupForm';
 export AuthButtons from './AuthButtons/AuthButtons';
 export UserIcon from './UserIcon/UserIcon';
 export Favourites from './Favourites/Favourites';
+export requireAuth from './pagesVisitingRules/requireAuth';
+export authed from './pagesVisitingRules/Authed';
 

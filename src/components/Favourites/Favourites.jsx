@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import FavouritesTable from './FavouritesTable';
 
-const Favourites = (props) => {
-  return (
-    <div style={{ marginTop: '100px' }}>You have no favourites</div>
-  );
+class Favourites extends Component {
+  componentWillUpdate(nextProps) {
+    this.setState({user: nextProps.user})
+  }
+
+  state = {
+    user: this.props.user,
+  }
+  render() {
+    if (this.props.user) {
+      const colors = this.state.user.favourites.map(item => (item.content));
+      return (
+        <div className="export-page">
+          <div className="container">
+            <FavouritesTable colors={colors} />
+          </div>
+        </div>
+      ); 
+    } else {
+      return null
+    }
+  }
 };
 
-export default Favourites;
+export default connect(state => ({
+  user: state.userReducer.user,
+}))(Favourites);

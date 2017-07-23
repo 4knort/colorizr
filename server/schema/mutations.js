@@ -1,8 +1,11 @@
 const graphql = require('graphql');
+const mongoose = require('mongoose');
+const User = mongoose.model('user');
 
 const {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLID,
 
 } = graphql;
 const UserType = require('./types/user_type');
@@ -38,6 +41,16 @@ const mutation = new GraphQLObjectType({
         const { user } = req;
         req.logout();
         return user;
+      },
+    },
+    addFavouriteToUser: {
+      type: UserType,
+      args: {
+        content: { type: GraphQLString },
+        userId: { type: GraphQLID },
+      },
+      resolve(parentValue, { content, userId }) {
+        return User.addColor(userId, content);
       },
     },
   },
