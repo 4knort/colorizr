@@ -2,11 +2,16 @@ import React, { PropTypes } from 'react';
 import { Panel, ColorItem } from 'components';
 import { LuminosityGroup, MixedGroup } from 'containers';
 import { connect } from 'react-redux';
+import { graphql, compose } from 'react-apollo';
+import addColorToFavourite from '../mutations/addColorToFavourite';
+import currentUser from '../queries/CurrentUser';
 import * as colorActions from '../actions/colorActions';
+import * as userActions from '../actions/userActions';
 
 import './css/pages.scss';
 
 const IndexPage = (props) => {
+  let modalOpen = true;
   const emptyColor = '#f5f5f5';
 
   const onClickAddColor = (isAdded, color) => {
@@ -23,16 +28,36 @@ const IndexPage = (props) => {
     }
   };
 
+  const onClickFavourite = (color, isFavourite) => {
+    const userId = props.user.id;
+
+    if (isFavourite) {
+      props.deleteFavourite(color);      
+    } else {
+      props.addFavourite(color);
+      props.mutate({
+        variables: { content: color, userId },
+        refetchQueries: [{ query: currentUser }]
+      })
+      .then(res => {
+        props.addUser(res.data.addFavouriteToUser);
+    });
+    }
+  };
+
   const selectAllColors = (colors) => {
     props.selectAll(colors);
   };
 
-  const chosenColors = props.colors.chosenColorsGroup.map((color, index) => (
+  const chosenColors = props.colors.chosenColorsGroup.map((item, index) => (
     <ColorItem
       key={`chosen-${index}`}
       isChosenPanel
-      color={color}
+      color={item.color}
+      isFavourite={item.isFavourite}
       onClickDeleteColor={onClickDeleteColor}
+      onClickFavourite={onClickFavourite}
+      user={props.user}
     />
   ));
   
@@ -76,7 +101,11 @@ IndexPage.propTypes = {
   colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
 };
 
-export default connect(state => ({
-  colors: state.colorReducer.colors,
-  chosenColor: state.colorReducer.chosenColor,
-}), colorActions)(IndexPage);
+export default compose(
+  graphql(addColorToFavourite),
+  connect(state => ({
+    colors: state.colorReducer.colors,
+    chosenColor: state.colorReducer.chosenColor,
+    user: state.userReducer.user,
+  }), {...colorActions, ...userActions})
+)(IndexPage);

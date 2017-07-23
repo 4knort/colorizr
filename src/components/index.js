@@ -12,3 +12,11 @@ export ModifiedColor from './ModifiedColor/ModifiedColor';
 export PreviewTable from './PreviewTable/PreviewTable';
 export ExportBlock from './ExportBlock/ExportBlock';
 export Image from './Image/Image';
+export LoginForm from './Form/LoginForm';
+export SignupForm from './Form/SignupForm';
+export AuthButtons from './AuthButtons/AuthButtons';
+export UserIcon from './UserIcon/UserIcon';
+export Favourites from './Favourites/Favourites';
+export requireAuth from './pagesVisitingRules/requireAuth';
+export authed from './pagesVisitingRules/Authed';
+

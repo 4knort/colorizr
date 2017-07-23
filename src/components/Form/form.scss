@@ -1,0 +1,27 @@
+.form {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.submit-btn {
+  cursor: pointer;
+  padding: 10px 80px;
+  border: 1px solid;
+  margin-bottom: 10px;
+  transition: all 0.4s ease;
+  border-radius: 3px;
+  &:hover {
+    background-color: #EEE;
+  }
+}
+
+.input-field {
+  margin: 10px 0;
+  input {
+    border-radius: 3px;
+  }
+}
+
+.errors {
+  color: red;
+}

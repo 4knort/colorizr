@@ -48,6 +48,24 @@ export default function colorReducer(state = initialState, action) {
         modifyColorIsAdded: false,
       };
     }
+    case types.ADD_FAVOURITE: {
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          chosenColorsGroup: helpers.addFavourite(state.colors.chosenColorsGroup, action.payload),
+        },
+      };
+    }
+    case types.DELETE_FAVOURITE: {
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          chosenColorsGroup: helpers.deleteFavourite(state.colors.chosenColorsGroup, action.payload),
+        },
+      };
+    }
     case types.MODIFY_COLOR_ADD: {
       return {
         ...state,

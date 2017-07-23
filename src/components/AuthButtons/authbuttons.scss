@@ -1,0 +1,23 @@
+.auth-buttons {
+  float: right;
+}
+
+.auth-btn {
+  transition: all 0.4s ease;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  color: #000;
+  font-size: 15px;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+  &--active {
+    color: #FFF;
+    background-color: #000;
+  }
+  &:hover {
+    background-color: #eee;
+  }
+}
