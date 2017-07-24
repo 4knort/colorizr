@@ -18,5 +18,4 @@ export AuthButtons from './AuthButtons/AuthButtons';
 export UserIcon from './UserIcon/UserIcon';
 export Favourites from './Favourites/Favourites';
 export requireAuth from './pagesVisitingRules/requireAuth';
-export authed from './pagesVisitingRules/Authed';
-
+export authed from './pagesVisitingRules/authed';
