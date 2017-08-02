@@ -6,6 +6,12 @@ export function addUser(user) {
     payload: user,
   };
 }
+export function deleteFavourites(favourites) {
+  return {
+    type: types.DELETE_FAVOURITE,
+    payload: favourites,
+  };
+}
 
 export function logoutUser() {
   return {

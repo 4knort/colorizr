@@ -18,6 +18,14 @@ export default function userReducer(state = initialState, action) {
         user: null,
       };
     }
+    case types.DELETE_FAVOURITE: {
+      return {
+        user: {
+          ...state.user,
+          favourites: action.payload,
+        },
+      };
+    }
     default: {
       return state;
     }

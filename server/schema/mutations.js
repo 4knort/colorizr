@@ -55,6 +55,25 @@ const mutation = new GraphQLObjectType({
         return User.addColor(userId, content);
       },
     },
+    deleteFavourite: {
+      type: FavouriteType,
+      args: {
+        favouriteId: { type: GraphQLID },
+      },
+      resolve(parentValue, { favouriteId }) {
+        return Favourite.remove({ _id: favouriteId });
+      },
+    },
+    deleteFavouriteFromUser: {
+      type: UserType,
+      args: {
+        userId: { type: GraphQLID },
+        favouriteId: { type: GraphQLID },
+      },
+      resolve(parentValue, { userId, favouriteId }) {
+        return User.removeFavourite(userId, favouriteId);
+      },
+    },
   },
 });
 

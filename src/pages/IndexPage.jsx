@@ -41,7 +41,7 @@ const IndexPage = (props) => {
       })
       .then(res => {
         props.addUser(res.data.addFavouriteToUser);
-    });
+      });
     }
   };
 

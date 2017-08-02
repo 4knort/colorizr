@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql `
-  mutation AddfavouriteToUser($content: String, $userId: ID){
-    addFavouriteToUser(content: $content, userId: $userId) {
+  mutation DeleteFavouriteFromUser($userId:ID, $favouriteId:ID){
+    deleteFavouriteFromUser(userId:$userId, favouriteId:$favouriteId){
       id
       email
       favourites{

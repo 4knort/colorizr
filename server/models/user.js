@@ -26,6 +26,22 @@ UserSchema.statics.addColor = function(id, content) {
     });
 };
 
+UserSchema.statics.removeFavourite = function(userId, favouriteId) {
+
+  return this.findById(userId)
+    .then(user => {
+
+      user.favourites.filter(item => {
+        if (item._id !== favouriteId) {
+          return item;
+        }
+
+      })
+      return Promise.all([user.save()])
+        .then(([user]) => user);
+    });
+};
+
 UserSchema.statics.findColor = function(id) {
   return this.findById(id)
     .populate('favourites')
