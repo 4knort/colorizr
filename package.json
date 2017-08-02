@@ -2,7 +2,7 @@
   "name": "colorizr",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon scripts/start",
+    "start": "node scripts/start",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --colors",
     "pages:build": "npm run clean && cross-env NODE_ENV=production BUILD=pages webpack --progress --colors",
     "pages:deploy": "npm run pages:build && gh-pages -d public",

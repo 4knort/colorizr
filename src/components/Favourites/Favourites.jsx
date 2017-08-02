@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import FavouritesTable from './FavouritesTable';
 import deleteFavourite from '../../mutations/deleteFavourite';
-import deleteFavouriteFromUser from '../../mutations/deleteFavouriteFromUser';
+import deleteFavouriteFromUser from '../../mutations/DeleteFavouriteFromUser';
 import currentUser from '../../queries/CurrentUser';
 import * as userActions from '../../actions/userActions';
 
@@ -43,10 +43,10 @@ class Favourites extends Component {
 
 export default compose(
   graphql(deleteFavourite, {
-    name : 'deleteFavouriteReq'
+    name : 'deleteFavouriteReq',
   }),
   graphql(deleteFavouriteFromUser, {
-    name : 'deleteFavouriteFromUserReq'
+    name : 'deleteFavouriteFromUserReq',
   }),
   connect(state => ({
     user: state.userReducer.user,
