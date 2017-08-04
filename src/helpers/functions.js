@@ -119,7 +119,7 @@ const addChosenColor = (colors, color) => {
 
   if (arr.length >= MAX_COLORS) {
     for (let key in colors) {
-      deleteGroupColor(colors[key],  arr[0].color)
+      deleteGroupColor(colors[key],  arr[0])
     }
 
     arr = arr.slice(1);
