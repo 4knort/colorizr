@@ -3,7 +3,7 @@ import { Image } from 'components';
 
 export default class ColorItem extends Component {
   static propTypes = {
-    onClickAddColor: PropTypes.func.isRequired,
+    onClickAddColor: PropTypes.func,
     onClickFavourite: PropTypes.func,
     onClickDeleteColor: PropTypes.func,
     color: PropTypes.string.isRequired,
