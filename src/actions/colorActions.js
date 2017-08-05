@@ -28,6 +28,13 @@ export function chooseMixedColor(color) {
   };
 }
 
+export function checkForFavourites(favourites) {
+  return {
+    type: types.CHECK_FOR_FAVOURITES,
+    payload: favourites,
+  };
+}
+
 export function addColor(color) {
   return {
     type: types.ADD_COLOR,

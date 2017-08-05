@@ -5,17 +5,17 @@ const FavouritesTable = (props) => {
   const colorsArr = [];
 
   const createTable = (array) => {
-    array.map((item, index) => {
-      const color = warna.parse(item.content);
-      const obj = {
-        color: color.hex,
-        rgb: color.rgb,
-        variable: `color-${index}`,
-        id: item.id,
-      };
+      array.map((item, index) => {
+        const color = warna.parse(item.content);
+        const obj = {
+          color: color.hex,
+          rgb: color.rgb,
+          variable: `color-${index}`,
+          id: item.id,
+        };
 
-      colorsArr.push(obj);
-    });
+        colorsArr.push(obj);
+      });
   };
 
   createTable(props.favourites);
@@ -26,7 +26,7 @@ const FavouritesTable = (props) => {
         <td style={{ backgroundColor: item.color }} />
         <td>{item.color}</td>
         <td>rgb({item.rgb.red}, {item.rgb.green}, {item.rgb.blue})</td>
-        <td><button onClick={() => {props.deleteFavourite(item.id)}}>Delete</button></td>
+        <td><button onClick={() => {props.deleteFavourite(item)}}>Delete</button></td>
       </tr>
     );
   });

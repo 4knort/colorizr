@@ -6,23 +6,25 @@ import deleteFavourite from '../../mutations/deleteFavourite';
 import deleteFavouriteFromUser from '../../mutations/DeleteFavouriteFromUser';
 import currentUser from '../../queries/CurrentUser';
 import * as userActions from '../../actions/userActions';
+import * as colorActions from '../../actions/colorActions';
 
 class Favourites extends Component {
   state = {
     user: this.props.user,
   }
 
-  deleteFavouriteColor = (favouriteId) => {
+  deleteFavouriteColor = (favourite) => {
     this.props.deleteFavouriteReq({
-      variables: { favouriteId },
+      variables: { favouriteId: favourite.id },
     });
     this.props.deleteFavouriteFromUserReq({
-      variables: { userId: this.props.user.id, favouriteId },
+      variables: { userId: this.props.user.id, favouriteId: favourite.id },
       refetchQueries: [{ query: currentUser }],
     })
     .then(res => {
       this.props.deleteFavourites(res.data.deleteFavouriteFromUser.favourites);
     });
+      this.props.deleteFavourite(favourite.color);
 
   }
 
@@ -50,5 +52,5 @@ export default compose(
   }),
   connect(state => ({
     user: state.userReducer.user,
-  }), userActions)
+  }), {...colorActions, ...userActions})
 )(Favourites);

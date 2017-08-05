@@ -67,6 +67,15 @@ export default function colorReducer(state = initialState, action) {
         },
       };
     }
+    case types.CHECK_FOR_FAVOURITES: {
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          chosenColorsGroup: helpers.checkForFavourites(state.colors.chosenColorsGroup, action.payload),
+        },
+      };
+    }
     case types.MODIFY_COLOR_ADD: {
       return {
         ...state,

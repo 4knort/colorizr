@@ -14,6 +14,12 @@ import { getFavouriteId } from '../helpers/functions';
 import './css/pages.scss';
 
 class IndexPage extends Component {
+  componentWillMount() {
+    if (this.props.user) {
+      this.props.checkForFavourites(this.props.user.favourites);
+    }  
+  }
+
   emptyColor = '#f5f5f5';
 
   onClickAddColor = (isAdded, color) => {

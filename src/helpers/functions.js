@@ -96,6 +96,20 @@ export const addFavourite = (array, color) => {
   return arr;
 };
 
+export const checkForFavourites = (arr, favourites) => {
+  const colors = arr.map(item => {
+    favourites.forEach((favourite, index) => {
+      if (favourite.content === item.color) {
+        item.isFavourite = true;
+      }
+    }) 
+
+    return item;
+  });
+
+  return colors;
+};
+
 export const deleteFavourite = (array, color) => {
   const arr = array.map(item => {
     if(item.color === color) {
