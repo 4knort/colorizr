@@ -18,7 +18,11 @@ const ModifyPage = (props) => {
   
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
-      props.addColor(color);
+      if (props.user) {
+        props.addColorAndFavourite(color, props.user.favourites)
+      } else {
+        props.addColor(color);
+      }
       props.modifyColorAdd();
     } else {
       props.deleteColor(color);

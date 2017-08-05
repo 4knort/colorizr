@@ -5,10 +5,14 @@ import * as colorActions from '../../actions/colorActions';
 
 import './colors.scss';
 
-const Colors = ({ colors, title, addColor, deleteColor }) => {
+const Colors = ({ colors, title, addColor, deleteColor, addColorAndFavourite, user }) => {
   const onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
-      addColor(color);
+      if (user) {
+        addColorAndFavourite(color, user.favourites)
+      } else {
+        addColor(color);
+      }
     } else {
       deleteColor(color);
     }
@@ -40,4 +44,5 @@ Colors.propTypes = {
   deleteColor: PropTypes.func.isRequired,
 };
 
-export default connect(null, colorActions)(Colors);
+export default connect(state => ({
+    user: state.userReducer.user}), colorActions)(Colors);
