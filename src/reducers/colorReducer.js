@@ -125,6 +125,13 @@ export default function colorReducer(state = initialState, action) {
         modifyColorIsAdded: false,
       };
     }
+    case types.ADD_COLOR_AND_FAVOURITES: {
+      return {
+        ...state,
+        colors: helpers.addColorAndFavourite(state.colors, action.payload.color, action.payload.favourites),
+        modifyColorIsAdded: false,
+      };
+    }
     case types.CHOOSE_COLOR: {
       return {
         ...state,

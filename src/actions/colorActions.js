@@ -35,6 +35,16 @@ export function addColor(color) {
   };
 }
 
+export function addColorAndFavourite(color, favourites) {
+  return {
+    type: types.ADD_COLOR_AND_FAVOURITES,
+    payload: {
+      color,
+      favourites,
+    },
+  };
+}
+
 export function toggleColorPicker() {
   return {
     type: types.TOGGLE_PICKER,

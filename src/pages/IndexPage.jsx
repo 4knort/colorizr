@@ -15,7 +15,11 @@ class IndexPage extends Component {
 
   onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
-      this.props.addColor(color);
+      if (this.props.user) {
+        this.props.addColorAndFavourite(color, this.props.user.favourites)
+      } else {
+        this.props.addColor(color);
+      }
     } else {
       this.props.deleteColor(color);
     }

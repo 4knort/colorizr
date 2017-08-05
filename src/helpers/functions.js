@@ -100,13 +100,37 @@ export const deleteFavourite = (array, color) => {
 export const addColor = (colors, color) => {
   const obj = {
     ...colors
-  }
+  };
 
   for (let key in obj) {
     obj[key] = clickColorItem(obj[key], color)
   }
 
   obj.chosenColorsGroup = addChosenColor(obj, color);
+
+  return obj;
+};
+
+export const addColorAndFavourite = (colors, color, favourites) => {
+  const obj = {
+    ...colors
+  };
+
+  for (let key in obj) {
+    obj[key] = clickColorItem(obj[key], color)
+  }
+
+  obj.chosenColorsGroup = addChosenColor(obj, color);
+
+  obj.chosenColorsGroup = obj.chosenColorsGroup.map(item => {
+    for (var i = 0; i < favourites.length; i++) {
+      if (item.color === favourites[i].content) {
+        item.isFavourite = true;
+      }
+    }
+
+    return item;
+  });
 
   return obj;
 };
