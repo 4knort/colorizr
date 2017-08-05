@@ -107,11 +107,12 @@ export default function colorReducer(state = initialState, action) {
         colors: {
           ...state.colors,
           chosenColorsGroup: helpers.selectAll(
-            action.payload,
-            state.colors
+            action.payload.colors,
+            state.colors,
+            action.payload.favourites,
           ),
-          luminosityGroup: helpers.showClickedItems(action.payload, state.colors.luminosityGroup),
-          mixedGroup: helpers.showClickedItems(action.payload, state.colors.mixedGroup),
+          luminosityGroup: helpers.showClickedItems(action.payload.colors, state.colors.luminosityGroup),
+          mixedGroup: helpers.showClickedItems(action.payload.colors, state.colors.mixedGroup),
         },
       };
     }

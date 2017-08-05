@@ -2,10 +2,13 @@ import React, { PropTypes } from 'react';
 import { Panel, ColorItem, Colors } from 'components';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
+import deleteFavourite from '../mutations/deleteFavourite';
+import deleteFavouriteFromUser from '../mutations/DeleteFavouriteFromUser';
 import * as colorActions from '../actions/colorActions';
 import addColorToFavourite from '../mutations/addColorToFavourite';
 import currentUser from '../queries/CurrentUser';
 import * as userActions from '../actions/userActions';
+import { getFavouriteId } from '../helpers/functions';
 
 import './css/pages.scss';
 
@@ -19,12 +22,26 @@ const ExplorePage = (props) => {
   };
    const onClickFavourite = (color, isFavourite) => {
     const userId = props.user.id;
+    let favouriteId = null;
 
     if (isFavourite) {
-      props.deleteFavourite(color);      
+      props.deleteFavourite(color);
+      favouriteId = getFavouriteId(color, props.user.favourites)
+
+      props.deleteFavouriteReq({
+        variables: { favouriteId },
+      });
+      props.deleteFavouriteFromUserReq({
+        variables: { userId, favouriteId },
+        refetchQueries: [{ query: currentUser }],
+      })
+      .then(res => {
+        props.deleteFavourites(res.data.deleteFavouriteFromUser.favourites);
+      });
+
     } else {
       props.addFavourite(color);
-      props.mutate({
+      props.addColorToFavouriteReq({
         variables: { content: color, userId },
         refetchQueries: [{ query: currentUser }]
       })
@@ -69,5 +86,13 @@ export default compose(
     colors: state.colorReducer.colors,
     user: state.userReducer.user,
   }), { ...colorActions, ...userActions }),
-  graphql(addColorToFavourite),
+  graphql(addColorToFavourite, {
+    name: 'addColorToFavouriteReq',
+  }),
+  graphql(deleteFavourite, {
+    name : 'deleteFavouriteReq',
+  }),
+  graphql(deleteFavouriteFromUser, {
+    name : 'deleteFavouriteFromUserReq',
+  }),
 )(ExplorePage);

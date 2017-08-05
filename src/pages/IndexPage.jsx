@@ -72,7 +72,7 @@ class IndexPage extends Component {
   };
 
   selectAllColors = (colors) => {
-    this.props.selectAll(colors);
+    this.props.selectAll(colors, this.props.user.favourites);
   };
 
   chosenColorsCreate = () => {
@@ -140,7 +140,7 @@ class IndexPage extends Component {
 
 export default compose(
   graphql(addColorToFavourite, {
-    name: 'addColorToFavouriteReq'
+    name: 'addColorToFavouriteReq',
   }),
   graphql(deleteFavourite, {
     name : 'deleteFavouriteReq',

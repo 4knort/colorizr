@@ -7,6 +7,9 @@ import * as colorActions from '../actions/colorActions';
 import addColorToFavourite from '../mutations/addColorToFavourite';
 import currentUser from '../queries/CurrentUser';
 import * as userActions from '../actions/userActions';
+import deleteFavourite from '../mutations/deleteFavourite';
+import deleteFavouriteFromUser from '../mutations/DeleteFavouriteFromUser';
+import { getFavouriteId } from '../helpers/functions';
 
 import './css/pages.scss';
 
@@ -38,12 +41,26 @@ const ModifyPage = (props) => {
 
    const onClickFavourite = (color, isFavourite) => {
     const userId = props.user.id;
+    let favouriteId = null;
 
-    if (isFavourite) {
-      props.deleteFavourite(color);      
-    } else {
+      if (isFavourite) {
+        props.deleteFavourite(color);
+        favouriteId = getFavouriteId(color, props.user.favourites)
+
+        props.deleteFavouriteReq({
+          variables: { favouriteId },
+        });
+        props.deleteFavouriteFromUserReq({
+          variables: { userId, favouriteId },
+          refetchQueries: [{ query: currentUser }],
+        })
+        .then(res => {
+          props.deleteFavourites(res.data.deleteFavouriteFromUser.favourites);
+        });
+
+      } else {
       props.addFavourite(color);
-      props.mutate({
+      props.addColorToFavouriteReq({
         variables: { content: color, userId },
         refetchQueries: [{ query: currentUser }]
       })
@@ -92,13 +109,6 @@ ModifyPage.propTypes = {
   colors: PropTypes.objectOf(React.PropTypes.array).isRequired,
 };
 
-// export default connect(state => ({
-//   colors: state.colorReducer.colors,
-//   modifyColor: state.colorReducer.modifyColor,
-//   modifyColorIsAdded: state.colorReducer.modifyColorIsAdded,
-//   user: state.userReducer.user,
-// }), colorActions)(ModifyPage);
-
 export default compose(
   connect(state => ({
     colors: state.colorReducer.colors,
@@ -106,5 +116,13 @@ export default compose(
     modifyColorIsAdded: state.colorReducer.modifyColorIsAdded,
     user: state.userReducer.user,
   }), { ...colorActions, ...userActions }),
-  graphql(addColorToFavourite),
+  graphql(addColorToFavourite, {
+    name: 'addColorToFavouriteReq',
+  }),
+  graphql(deleteFavourite, {
+    name : 'deleteFavouriteReq',
+  }),
+  graphql(deleteFavouriteFromUser, {
+    name : 'deleteFavouriteFromUserReq',
+  }),
 )(ModifyPage);

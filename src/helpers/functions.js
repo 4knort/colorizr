@@ -172,8 +172,8 @@ const addChosenColor = (colors, color) => {
   return arr;
 }
 
-export const selectAll = (array, colors) => {
-  const arr = array.map((item, index) => {
+export const selectAll = (array, colors, favourites) => {
+  let arr = array.map((item, index) => {
 
     for (let key in colors) {
       deleteGroupColor(colors[key], colors.chosenColorsGroup[index])
@@ -181,6 +181,18 @@ export const selectAll = (array, colors) => {
 
     return item;
   });
+
+  if (favourites) {
+    arr = arr.map(item => {
+      favourites.forEach((favourite, index) => {
+        if (favourite.content === item.color) {
+          item.isFavourite = true;
+        }
+      });
+
+      return item;
+    });
+  }
 
   return arr;
 };
