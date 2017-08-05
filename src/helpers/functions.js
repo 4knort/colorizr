@@ -73,6 +73,17 @@ export const clickColorItem = (array, color) => {
   return arr;
 };
 
+export const getFavouriteId = (color, favourites) => {
+  let id;
+  favourites.forEach(item => {
+    if (item.content === color) {
+      id = item.id
+    }
+  });
+
+  return id;
+};
+
 export const addFavourite = (array, color) => {
   const arr = array.map(item => {
     if(item.color === color) {
@@ -97,46 +108,33 @@ export const deleteFavourite = (array, color) => {
   return arr;
 };
 
-export const addColor = (colors, color) => {
+export const addColor = (colors, color, favourites) => {
   const obj = {
-    ...colors
+    ...colors,
   };
 
   for (let key in obj) {
-    obj[key] = clickColorItem(obj[key], color)
+    obj[key] = clickColorItem(obj[key], color);
   }
 
   obj.chosenColorsGroup = addChosenColor(obj, color);
 
-  return obj;
-};
+  if (favourites) {
+    obj.chosenColorsGroup = obj.chosenColorsGroup.map(item => {
+      favourites.forEach((favourite, index) => {
+        if (favourite.content === item.color) {
+          item.isFavourite = true;
+        }
+      });
 
-export const addColorAndFavourite = (colors, color, favourites) => {
-  const obj = {
-    ...colors
-  };
-
-  for (let key in obj) {
-    obj[key] = clickColorItem(obj[key], color)
+      return item;
+    });
   }
-
-  obj.chosenColorsGroup = addChosenColor(obj, color);
-
-  obj.chosenColorsGroup = obj.chosenColorsGroup.map(item => {
-    for (var i = 0; i < favourites.length; i++) {
-      if (item.color === favourites[i].content) {
-        item.isFavourite = true;
-      }
-    }
-
-    return item;
-  });
 
   return obj;
 };
 
 const addChosenColor = (colors, color) => {
-
   let arr = colors.chosenColorsGroup.filter(item => {
     return item.color !== EMPTY_COLOR;
   });

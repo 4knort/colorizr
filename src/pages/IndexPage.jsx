@@ -7,6 +7,9 @@ import addColorToFavourite from '../mutations/addColorToFavourite';
 import currentUser from '../queries/CurrentUser';
 import * as colorActions from '../actions/colorActions';
 import * as userActions from '../actions/userActions';
+import deleteFavourite from '../mutations/deleteFavourite';
+import deleteFavouriteFromUser from '../mutations/DeleteFavouriteFromUser';
+import { getFavouriteId } from '../helpers/functions';
 
 import './css/pages.scss';
 
@@ -33,12 +36,26 @@ class IndexPage extends Component {
 
   onClickFavourite = (color, isFavourite) => {
     const userId = this.props.user.id;
+    let favouriteId = null;
 
     if (isFavourite) {
       this.props.deleteFavourite(color);
+      favouriteId = getFavouriteId(color, this.props.user.favourites)
+
+      this.props.deleteFavouriteReq({
+        variables: { favouriteId },
+      });
+      this.props.deleteFavouriteFromUserReq({
+        variables: { userId, favouriteId },
+        refetchQueries: [{ query: currentUser }],
+      })
+      .then(res => {
+        this.props.deleteFavourites(res.data.deleteFavouriteFromUser.favourites);
+      });
+
     } else {
       this.props.addFavourite(color);
-      this.props.mutate({
+      this.props.addColorToFavouriteReq({
         variables: { content: color, userId },
         refetchQueries: [{ query: currentUser }],
       })
@@ -116,10 +133,19 @@ class IndexPage extends Component {
 }
 
 export default compose(
-  graphql(addColorToFavourite),
+  graphql(addColorToFavourite, {
+    name: 'addColorToFavouriteReq'
+  }),
+  graphql(deleteFavourite, {
+    name : 'deleteFavouriteReq',
+  }),
+  graphql(deleteFavouriteFromUser, {
+    name : 'deleteFavouriteFromUserReq',
+  }),
   connect(state => ({
     colors: state.colorReducer.colors,
     chosenColor: state.colorReducer.chosenColor,
     user: state.userReducer.user,
+    favouriteId: state.colorReducer.favouriteId,
   }), {...colorActions, ...userActions})
 )(IndexPage);

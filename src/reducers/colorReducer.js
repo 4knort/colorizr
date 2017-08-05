@@ -11,6 +11,7 @@ const initialState = {
   mixedColor: MIXED_START_COLOR,
   modifyColor: '',
   modifyColorIsAdded: false,
+  favouriteId: null,
   colors: {
     chosenColorsGroup: helpers.getArrayEmptyColors(),
     luminosityGroup: helpers.getGradient(CHOSE_START_COLOR),
@@ -128,7 +129,7 @@ export default function colorReducer(state = initialState, action) {
     case types.ADD_COLOR_AND_FAVOURITES: {
       return {
         ...state,
-        colors: helpers.addColorAndFavourite(state.colors, action.payload.color, action.payload.favourites),
+        colors: helpers.addColor(state.colors, action.payload.color, action.payload.favourites),
         modifyColorIsAdded: false,
       };
     }
