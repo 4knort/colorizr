@@ -20,6 +20,10 @@ class IndexPage extends Component {
     }  
   }
 
+  modalClick = (e) => {
+    this.setState({modalOpen: !this.state.modalOpen})
+  }
+
   emptyColor = '#f5f5f5';
 
   onClickAddColor = (isAdded, color) => {
