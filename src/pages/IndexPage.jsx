@@ -15,6 +15,7 @@ import axios from 'axios';
 import './css/pages.scss';
 
 class IndexPage extends Component {
+  componentWillMount() {
     if (this.props.user) {
       this.props.checkForFavourites(this.props.user.favourites);
     }  
