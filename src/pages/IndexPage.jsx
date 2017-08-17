@@ -15,10 +15,6 @@ import axios from 'axios';
 import './css/pages.scss';
 
 class IndexPage extends Component {
-  componentWillMount() {
-    axios.get('https://pixabay.com/api/?key=6101741-c367fefb6b531189274c7eb56').then(response => {
-      console.log(response.data)
-    });
     if (this.props.user) {
       this.props.checkForFavourites(this.props.user.favourites);
     }  
