@@ -5,7 +5,7 @@ import './color-picker.scss';
 
 const ColorPickerSketch = ({ title, handleChange, defaultColor, isColorPickerOpened, width }) => {
   const pickerTitle = title ? <h1 className="color-picker-container__title">{title}</h1> : '';
-  const pickerOpened = isColorPickerOpened 
+  const pickerOpened = isColorPickerOpened
   ? 'color-picker-container color-picker-container--active'
   : 'color-picker-container';
 

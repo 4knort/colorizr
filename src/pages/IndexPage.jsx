@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { Panel, ColorItem } from 'components';
 import { LuminosityGroup, MixedGroup } from 'containers';
 import { connect } from 'react-redux';
@@ -10,33 +10,32 @@ import * as userActions from '../actions/userActions';
 import deleteFavourite from '../mutations/deleteFavourite';
 import deleteFavouriteFromUser from '../mutations/DeleteFavouriteFromUser';
 import { getFavouriteId } from '../helpers/functions';
-import axios from 'axios';
 
 import './css/pages.scss';
 
 class IndexPage extends Component {
-  componentWillMount() {
+  emptyColor = '#f5f5f5';
+
+  componentDidMount() {
     if (this.props.user) {
       this.props.checkForFavourites(this.props.user.favourites);
     }  
   }
 
-  modalClick = (e) => {
-    this.setState({modalOpen: !this.state.modalOpen})
+  modalClick = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
   }
-
-  emptyColor = '#f5f5f5';
 
   onClickAddColor = (isAdded, color) => {
     if (!isAdded) {
       if (this.props.user) {
-        this.props.addColorAndFavourite(color, this.props.user.favourites)
-      } else {
-        this.props.addColor(color);
+        return this.props.addColorAndFavourite(color, this.props.user.favourites)
       }
-    } else {
-      this.props.deleteColor(color);
+
+      return this.props.addColor(color);
     }
+
+    this.props.deleteColor(color);
   };
 
   onClickDeleteColor = (color) => {
@@ -78,10 +77,10 @@ class IndexPage extends Component {
 
   selectAllColors = (colors) => {
     if (this.props.user) {
-      this.props.selectAll(colors, this.props.user.favourites);
-    } else {
-      this.props.selectAll(colors);
+      return this.props.selectAll(colors, this.props.user.favourites);
     }
+     
+    this.props.selectAll(colors);
   };
 
   chosenColorsCreate = () => {
